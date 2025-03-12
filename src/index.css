@@ -1,0 +1,23 @@
+@font-face{
+    font-family: 'FiraGO';
+    src: url('./assets/fonts/FiraGO-Regular.woff2') format('woff2'),
+    url('./assets/fonts/FiraGO-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FredokaOne';
+    src: url('./assets/fonts/FredokaOne-Regular.woff2') format('woff2'),
+        url('./assets/fonts/FredokaOne-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body > * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
