@@ -1,11 +1,16 @@
-import Header from './components/Header/Header'
+import { HashRouter, Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
 
 function App() {
 
   return (
-    <>
-    <Header />
-    </>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+
+        </Route>
+      </Routes>
+    </HashRouter>
   )
 }
 
