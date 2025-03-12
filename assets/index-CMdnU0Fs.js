@@ -88,4 +88,4 @@ Please change the parent <Route path="${Y}"> to <Route path="${Y==="/"?"*":`${Y}
     font-family: FiraGO;
     font-size: 16px;
     margin-right: 40px;
-`;function Fg(){return Vt.jsxs(Vt.Fragment,{children:[Vt.jsx(kg,{}),Vt.jsx(d1,{})]})}function Pg(){return Vt.jsx(Y1,{basename:"/momentum/",children:Vt.jsx(m1,{children:Vt.jsx(om,{path:"/",element:Vt.jsx(Fg,{})})})})}bv.createRoot(document.getElementById("root")).render(Vt.jsx(x.StrictMode,{children:Vt.jsx(Pg,{})}));
+`;function Fg(){return Vt.jsxs(Vt.Fragment,{children:[Vt.jsx(kg,{}),Vt.jsx(d1,{})]})}function Pg(){return Vt.jsx(Y1,{children:Vt.jsx(m1,{children:Vt.jsx(om,{path:"/",element:Vt.jsx(Fg,{})})})})}bv.createRoot(document.getElementById("root")).render(Vt.jsx(x.StrictMode,{children:Vt.jsx(Pg,{})}));
