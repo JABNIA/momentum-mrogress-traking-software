@@ -7,7 +7,6 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-
         </Route>
       </Routes>
     </HashRouter>
