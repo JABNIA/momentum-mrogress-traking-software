@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 function Header() {
@@ -11,8 +12,8 @@ function Header() {
                 </p>
             </div>
             <div className="buttons">
-                <Button bg="#FFFFFF" color="#000000" border={true}>თანამშრომლის შექმნა</Button>
-                <Button bg="#8338EC" color="#FFFFFF" border={false}>+ შექმენი ახალი დავალება</Button>
+                <Button bg="#FFFFFF" color="#000000" border={"true"}>თანამშრომლის შექმნა</Button>
+                <Link to="/new-task" >+ შექმენი ახალი დავალება</Link>
             </div>
         </Navigation>
     </header>
@@ -43,7 +44,7 @@ const Navigation = styled.nav`
 `
 
 
-const Button = styled.button<{bg:string, color:string, border: boolean}>`
+const Button = styled.button<{bg:string, color:string, border: string}>`
     width: auto;
     height: 42px;
     padding: 10px 20px;
