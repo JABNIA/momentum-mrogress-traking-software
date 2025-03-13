@@ -9,9 +9,9 @@ import Department from './Department'
 
 function NewTask() {
   const [name, setName] = useState('')
-  const [description, setDescription] = useState([])
-  const [deadline, setDeadline] = useState('')
-  const [assignee, setAssignee] = useState('')
+  // const [description, setDescription] = useState([])
+  // const [deadline, setDeadline] = useState('')
+  // const [assignee, setAssignee] = useState('')
   const [dep, setDep] = useState<department>({
     id: 1,
     name: "ადმინისტრაციის დეპარტამენტი"
