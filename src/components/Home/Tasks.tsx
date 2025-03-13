@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { API_TOKEN } from './TasksPage'
 import { task } from '../../types/types'
 import axios from 'axios'

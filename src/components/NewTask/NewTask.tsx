@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { department, priority, status } from '../../types/types'
-import { API_TOKEN } from '../Home/TasksPage'
 import Priorities from './Priorities'
 import Status from './Status'
 import TaskName from './TaskName'
