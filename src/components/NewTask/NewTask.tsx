@@ -37,7 +37,7 @@ function NewTask() {
     <FormWrapper>
       <form action="post">
         
-        <TaskName setName={setName}/>
+        <TaskName name={name} setName={setName}/>
         
         <Department department={dep} setDepartment={setDep}/>
 
