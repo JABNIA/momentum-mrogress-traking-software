@@ -1,4 +1,4 @@
-import { Button, ButtonLink, Navigation } from "./styled"
+import { Button, ButtonLink, Navigation } from "./Styled"
 
 function Header({setModal}: {setModal: React.Dispatch<React.SetStateAction<boolean>>}) {
   return (
