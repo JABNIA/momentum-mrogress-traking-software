@@ -6,7 +6,7 @@ import { TaskName, TaskDescription } from './Inputs'
 import Department from './Department'
 import ResponsibleEmployee from './ResponsibleEmployee'
 import { FormWrapper } from './TaskStyled'
-
+import DateSelect from './DateSelect'
 function NewTask() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState<string>("")
@@ -49,10 +49,7 @@ function NewTask() {
           <Priorities priority={priority} setPriority={setPriority}/>
           <Status status={status} setStatus={setStatus}/>
         </div>
-        <div className='input-wrapper deadline'>
-          <label htmlFor="">დედლაინი</label>
-          <input type="date" />
-        </div>
+        <DateSelect />
       </form>
 
       <button>დავალებვის შექმნა</button>

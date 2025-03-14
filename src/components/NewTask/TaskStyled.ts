@@ -155,8 +155,22 @@ export const FormWrapper = styled.div`
 
 `
 
-// const Calendar = styled.div`
-//   width: 318;
-//   height: 336;
-//   padding: 16px;
-// `
+export const Calendar = styled.div`
+  width: 318px;
+  height: 336px;
+  padding: 16px;
+  background-color: #FFFFFF;
+  margin-top: 4px;
+`
+export const DateSelection = styled.div`
+  width: 318px;
+  height: 45px;
+  padding: 14px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 6px;
+  border: 1px solid rgba(222, 226, 230, 1);
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  color: #ADB5BD;
+`
