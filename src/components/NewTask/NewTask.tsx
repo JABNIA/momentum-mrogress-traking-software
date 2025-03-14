@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { department, priority, status } from '../../types/types'
+import { department, employee, priority, status } from '../../types/types'
 import Priorities from './Priorities'
 import Status from './Status'
-import TaskName from './TaskName'
+import { TaskName, TaskDescription } from './Inputs'
 import Department from './Department'
+import ResponsibleEmployee from './ResponsibleEmployee'
+import { FormWrapper } from './Styled'
 
 function NewTask() {
   const [name, setName] = useState('')
-  // const [description, setDescription] = useState([])
+  const [description, setDescription] = useState<string>("")
   // const [deadline, setDeadline] = useState('')
-  // const [assignee, setAssignee] = useState('')
+  const [assignedEmployee, setAssignedEmployee] = useState<employee | null>(null)
   const [dep, setDep] = useState<department>({
     id: 1,
     name: "ადმინისტრაციის დეპარტამენტი"
@@ -37,17 +38,13 @@ function NewTask() {
       <form action="post">
         
         <TaskName name={name} setName={setName}/>
-        
         <Department department={dep} setDepartment={setDep}/>
 
-        <div className='input-wrapper'>
-          <label htmlFor="">აღწერა</label>
-          <textarea name="description" id=""></textarea>
-        </div>
-        <div className='input-wrapper'>
-          <label htmlFor="">პასუხისმგებელი თანამშრომელი</label>
-          <input type="text" /> 
-        </div>
+        <TaskDescription description={description} setDescription={setDescription}/>
+        {assignedEmployee !== null && 
+        <ResponsibleEmployee assignedEmployee={assignedEmployee}
+         setAssignedEmployee={setAssignedEmployee}/>}
+        
         <div className='priority-status'>
           <Priorities priority={priority} setPriority={setPriority}/>
           <Status status={status} setStatus={setStatus}/>
@@ -66,66 +63,3 @@ function NewTask() {
 export default NewTask
 
 
-const FormWrapper = styled.div`
-  width: 1684px;
-  height: 804px;
-  margin: auto;
-  padding: 65px 55px;
-  background-color: #FBF9FF;
-  
-  form {
-    box-sizing: border-box;
-  }
-
-  form {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 161px;
-    row-gap: 55px;
-  }
-
-  .input-wrapper {
-    display: flex;
-    flex-direction: column;
-    row-gap: 6px;
-    margin: 0 0 32px 0;
-  }
-
-  .input-wrapper > input{
-    width: 550px;
-    height: 45px;
-    border: 1px solid #DEE2E6;
-    border-radius: 5px;
-    padding: 14px;
-    box-sizing: border-box;
-  }
-  
-  .deadline > input{
-    width: 320px;
-  }
-  .input-wrapper > textarea {
-    width: 550px;
-    height: 133px;
-    resize: none;
-    border: 1px solid #DEE2E6;
-    border-radius: 5px;
-  }
-
-
-  .priority-status {
-    display: flex;
-    gap: 32px;
-  }
-
-  .priority-status select {
-    width: 259px;
-    height: 45px;
-    background-color: #FFFFFF;
-    border: 1px solid #DEE2E6;
-    border-radius: 5px;
-    box-sizing: border-box;
-    }
-
-`

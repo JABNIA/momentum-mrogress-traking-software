@@ -40,3 +40,10 @@ export type task ={
     name: string,
     icon: string
   }
+
+  export interface employee {
+    name: string,
+    surname: string,
+    avatar: string,
+    department_id: number
+  }

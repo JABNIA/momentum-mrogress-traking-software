@@ -1,46 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { department } from "../../types/types";
+import { employee } from "../../types/types";
 import axios from "axios";
 import { API_TOKEN } from "../Home/TasksPage";
 import { Select, Wrapper } from "./Styled";
 
-function Department({
-  department,
-  setDepartment,
+function ResponsibleEmployee({
+    assignedEmployee,
+    setAssignedEmployee,
 }: {
-  department: department;
-  setDepartment: React.Dispatch<React.SetStateAction<department>>;
+  assignedEmployee: employee;
+  setAssignedEmployee: React.Dispatch<React.SetStateAction<employee | null>>;
 }) {
-  const [departments, setDepartments] = useState<department[]>([]);
+  const [employees, setEmployees] = useState<employee[]>([]);
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     try{
 
-        const getDepartments = async () =>
+        const getAllEmployees = async () =>
             await axios
-        .get("https://momentum.redberryinternship.ge/api/departments", {
+        .get("https://momentum.redberryinternship.ge/api/employees", {
             headers: { bearerAuth: API_TOKEN },
         })
-        .then((response) => setDepartments(response.data));
+        .then((response) => setEmployees(response.data));
         
-        getDepartments()
+        getAllEmployees()
     }catch (error){
         console.log(error)
     }
   }, []);
 
 
-  const handleDepartmentSelect = (department: department) =>{ 
-    setDepartment(department)
+  const handleemployeeSelect = (employee: employee) =>{ 
+    setAssignedEmployee(employee)
   }
 
   return (
-    <Wrapper style={{gridColumn: "2/3", gridRow: "1/2"}}>
+    <Wrapper style={{gridColumn: "2/3", gridRow: "2/3"}}>
         <p>პრიორიტეტი*</p>
         <Select onClick={() => setOpen(!open)} open={open} style={{width: "550px"}}>
           <div className="selection" >
-            <span>{department.name}</span>
+            <span>{assignedEmployee.name + assignedEmployee.surname}</span>
             <span>
               <img
                 className="dropdown-arrow"
@@ -52,15 +52,15 @@ function Department({
   
           {open && (
             <ul className="variants-container">
-              {departments.map((item) => (
+              {employees.map((item) => (
                 <li
-                  key={item.id}
+                  key={item.name + " " + item.surname}
                   onClick={() => {
                     setOpen(false);
-                    handleDepartmentSelect(item);
+                    handleemployeeSelect(item);
                   }}
                 >
-                  <span className="name">{item.name}</span>
+                  <span className="name">{item.name + " " + item.surname}</span>
                 </li>
               ))}
             </ul>
@@ -70,4 +70,4 @@ function Department({
 );
 }
 
-export default Department;
+export default ResponsibleEmployee;
