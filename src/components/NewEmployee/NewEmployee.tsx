@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { Background, Inputs, Modal } from "./Styled"
-import { Button } from "../Header/styled"
+import { Background, Inputs, Modal } from "./EmployeeStyled"
+import { Button } from "../Header/HeaderStyled"
 
 function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<boolean>>}) {
     const [name, setName] = useState<string>("")

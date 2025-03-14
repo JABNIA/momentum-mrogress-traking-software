@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { department } from "../../types/types";
 import axios from "axios";
 import { API_TOKEN } from "../Home/TasksPage";
-import { Select, Wrapper } from "./Styled";
+import { Select, Wrapper } from "./TaskStyled";
 
 function Department({
   department,

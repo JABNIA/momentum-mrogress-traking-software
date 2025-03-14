@@ -5,7 +5,7 @@ import Status from './Status'
 import { TaskName, TaskDescription } from './Inputs'
 import Department from './Department'
 import ResponsibleEmployee from './ResponsibleEmployee'
-import { FormWrapper } from './Styled'
+import { FormWrapper } from './TaskStyled'
 
 function NewTask() {
   const [name, setName] = useState('')

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_TOKEN } from "../Home/TasksPage";
 import { priority } from "../../types/types";
-import { Select, Wrapper } from "./Styled";
+import { Select, Wrapper } from "./TaskStyled";
 
 function Priorities({
   priority,

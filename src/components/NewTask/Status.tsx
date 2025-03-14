@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { status } from '../../types/types';
 import axios from 'axios';
 import { API_TOKEN } from '../Home/TasksPage';
-import { Select, Wrapper } from './Styled';
+import { Select, Wrapper } from './TaskStyled';
 
 function Status({status, setStatus}: {status: status, setStatus: React.Dispatch<React.SetStateAction<status>>} ) {
     const [statuses, setStatuses] = useState<status[]>([])
