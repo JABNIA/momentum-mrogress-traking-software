@@ -47,3 +47,8 @@ export type task ={
     avatar: string,
     department_id: number
   }
+
+  export interface CalendarDate {
+    month: number,
+    date: number,
+  }

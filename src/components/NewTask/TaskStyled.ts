@@ -85,7 +85,7 @@ export const Wrapper = styled.div`
 
 export const FormWrapper = styled.div`
   width: 1684px;
-  height: 804px;
+  height: 958px;
   margin: auto;
   padding: 65px 55px;
   background-color: #FBF9FF;
@@ -158,9 +158,68 @@ export const FormWrapper = styled.div`
 export const Calendar = styled.div`
   width: 318px;
   height: 336px;
-  padding: 16px;
   background-color: #FFFFFF;
   margin-top: 4px;
+  box-sizing: border-box;
+
+  .months {
+    margin: 14px 0 0 14px ; 
+  }
+
+  .buttons{
+    width: 286px;
+    margin: 22px auto;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .current-month{
+    color: #0D0F10;
+  }
+
+  .other-Month{
+    color: #6C757D;   
+  }
+
+  table{
+    width: 224px;
+    height: 224px;
+    margin: 0 47px;
+  }
+
+  th {
+    width: 32px;
+    height: 32px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: center;
+  }
+
+  td{
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: center;
+  }
+
+
+  button{
+    background: transparent;
+    border: none;
+    color: #8338EC;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    text-align: center;
+  }
 `
 export const DateSelection = styled.div`
   width: 318px;

@@ -7,6 +7,7 @@ import Department from './Department'
 import ResponsibleEmployee from './ResponsibleEmployee'
 import { FormWrapper } from './TaskStyled'
 import DateSelect from './DateSelect'
+
 function NewTask() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState<string>("")
