@@ -1,3 +1,5 @@
+import React from "react"
+
 export type status = {
     id: number,
     name: string
@@ -59,4 +61,16 @@ export type task ={
     month: number,
     setYear: React.Dispatch<React.SetStateAction<number>>,
     setMonth: React.Dispatch<React.SetStateAction<number>>
+  }
+
+  export type CalendarContextValues = {
+    today: Date,
+    calendarOpened: boolean,
+    month: number,
+    year: number,
+    dateString: string,
+    setCalendarOpened: React.Dispatch<React.SetStateAction<boolean>>,
+    setMonth: React.Dispatch<React.SetStateAction<number>>,
+    setYear: React.Dispatch<React.SetStateAction<number>>,
+    setDateString: React.Dispatch<React.SetStateAction<string>>;
   }
