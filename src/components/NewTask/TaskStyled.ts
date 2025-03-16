@@ -178,7 +178,7 @@ export const Calendar = styled.div`
     color: #0D0F10;
   }
 
-  .other-Month{
+  .other-month{
     color: #6C757D;   
   }
 

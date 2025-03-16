@@ -52,3 +52,11 @@ export type task ={
     month: number,
     date: number,
   }
+
+  export interface dynamicDatesProps {
+    today: Date,
+    year: number, 
+    month: number,
+    setYear: React.Dispatch<React.SetStateAction<number>>,
+    setMonth: React.Dispatch<React.SetStateAction<number>>
+  }

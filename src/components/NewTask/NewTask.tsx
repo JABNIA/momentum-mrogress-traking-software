@@ -6,7 +6,7 @@ import { TaskName, TaskDescription } from './Inputs'
 import Department from './Department'
 import ResponsibleEmployee from './ResponsibleEmployee'
 import { FormWrapper } from './TaskStyled'
-import DateSelect from './DateSelect'
+import DateSelect from './datePiker/DateSelect'
 
 function NewTask() {
   const [name, setName] = useState('')
