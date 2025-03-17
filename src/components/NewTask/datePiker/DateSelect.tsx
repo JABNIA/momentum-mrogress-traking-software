@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Calendar, DateSelection } from "../TaskStyled";
 import Months from "./Months";
 import { CalendarContextValues } from "../../../types/types";
@@ -14,6 +14,9 @@ function DateSelect() {
   const [year, setYear] = useState<number>(today.getFullYear());
   const [dateString, setDateString] = useState<string>("DD/MM/YYYY");
   
+  useEffect(() => {
+
+  }, [month])
   return (
     <div style={{ gridColumn: "2/3", gridRow: "3/4" }}>
       <p>დედლაინი*</p>
