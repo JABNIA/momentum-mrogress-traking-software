@@ -6,6 +6,8 @@ import { CalendarDate } from "../../../types/types";
 
 function Months() {
   const context = useContext(CalendarContext);
+  const [selectOpen, setSelectOpen] = useState<boolean>(false);
+  const [def, setDefault] = useState<boolean>(true)
   const months: string[] = [
     "იანვარი",
     "თებერვალი",
@@ -39,14 +41,32 @@ function Months() {
       month: string;
       yearCount: number;
     }>(monthsOfYear[context.month]);
-
+    
+    //force update of component
     useEffect(() => {
-        // const weeksArr = getWeeks(context.year, context.month);
-
-        setWeeks(getWeeks(context.year, context.month))
-    }, [selectedMonth])
-
-
+      setWeeks(getWeeks(context.year, context.month));
+    }, [selectedMonth]);
+    
+    //select month from dropdown
+    const handleSelectMonth = (object: typeof selectedMonth) => {
+      context.setMonth(object.id - 1);
+      context.setYear(object.yearCount);
+      setSelectedMonth(object);
+    };
+    
+    //open months dropdown
+    const handleSelectOpen = () => {
+      setSelectOpen((curr) => !curr);
+    };
+    
+    const handleSetDateString = (date:number) => {
+      setDefault(false);
+      context.setDate(date);
+      context.setDateString(
+        () => new Date(context.year, context.month, date).toLocaleDateString("de-DE")
+      )
+    }
+    //change months with arrows
     const handleChangeMonth = (changer: boolean) => {
       const index = monthsOfYear.findIndex(
         (month) => month.id === selectedMonth.id
@@ -56,26 +76,35 @@ function Months() {
         : monthsOfYear[index === 11 ? index : index + 1];
 
       setSelectedMonth(newObject);
-      context?.setMonth(monthsOfYear.findIndex((month) => month.id === selectedMonth.id + 1)
+      context?.setMonth(
+        monthsOfYear.findIndex((month) => month.id === selectedMonth.id + 1)
       );
     };
 
+    //RETURN IS HERE!!!!!!
     return (
       <>
-        <div>
-          <select name="months" onChange={() => {}}>
-            {monthsOfYear.map(monthObj => {
-              return (
-                <option
-                  key={monthObj.id}
-                  selected={monthObj.id === selectedMonth.id ? true : false}
-                >
-                  {monthObj.month} {monthObj.yearCount}
-                </option>
-              );
-            })}
-          </select>
-          <div>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className="months-selection" onClick={handleSelectOpen}>
+            <p className="selected-month">
+              {months[context.month]} {context.year} <img src="./assets/images/months-dropdown-Arrow.svg" alt="Months dropdown arrow" />
+            </p>
+            <ul className="month-list">
+              {selectOpen &&
+                monthsOfYear.map((monthObj) => {
+                  return (
+                    <li
+                      key={monthObj.id}
+                      className="option"
+                      onClick={() => handleSelectMonth(monthObj)}
+                    >
+                      {monthObj.month} {monthObj.yearCount}
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
+          <div className="month-switcher-arrows">
             <img
               src="./assets/images/calendar-arrow-up.svg"
               alt="Arrow up"
@@ -107,14 +136,23 @@ function Months() {
                           </td>
                         ) : (
                           <td
-                            className={"current-month"}
-                            onClick={() =>
-                              context.setDateString(
-                                `${day.date}.${day.month}.${context.year}`
-                              )
+                            className={
+                              def ? 
+                              context.date +1 === day.date && 
+                              context.month === day.month
+                                ? "current-month default-deadline"
+                                : "current-month"
+                              :
+                              context.date === day.date && 
+                              context.month === day.month
+                                ? "current-month default-deadline"
+                                : "current-month"           
                             }
+                            onClick={
+                              () => handleSetDateString(day.date)
+                              }
                             key={index}
-                          >
+                            >
                             {day.date}
                           </td>
                         )
@@ -124,11 +162,12 @@ function Months() {
                         </td>
                       ) : (
                         <td
-                          className={"other-month"}
-                          onClick={() =>
-                            context.setDateString(
-                              `${day.date}.${day.month}.${context.year}`
-                            )
+                          className={context.date === day.date && 
+                            context.today.getMonth() === day.month
+                              ? "current-month default-deadline"
+                              : "current-month"}
+                          onClick={
+                            () => handleSetDateString(day.date)
                           }
                           key={index}
                         >

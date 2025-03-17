@@ -66,11 +66,15 @@ export type task ={
   export type CalendarContextValues = {
     today: Date,
     calendarOpened: boolean,
+    date: number,
     month: number,
     year: number,
+    deadline: string,
     dateString: string,
     setCalendarOpened: React.Dispatch<React.SetStateAction<boolean>>,
+    setDate:  React.Dispatch<React.SetStateAction<number>>,
     setMonth: React.Dispatch<React.SetStateAction<number>>,
     setYear: React.Dispatch<React.SetStateAction<number>>,
+    setDeadLine: React.Dispatch<React.SetStateAction<string>>,
     setDateString: React.Dispatch<React.SetStateAction<string>>;
   }

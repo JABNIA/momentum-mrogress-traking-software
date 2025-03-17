@@ -161,9 +161,41 @@ export const Calendar = styled.div`
   background-color: #FFFFFF;
   margin-top: 4px;
   box-sizing: border-box;
+  
+  .months-selection {
+    position: relative;
+    margin: 16.5px 0 14.5px 18px;
+    border: none;
+    background-color: transparent;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 0px;
+    appearance: none; 
+    cursor: pointer;
+  }
 
-  .months {
-    margin: 14px 0 0 14px ; 
+  .month-list{
+    position: absolute;
+    margin-top: 5px;
+    width: 125px;
+    height: auto;
+    list-style: none;
+    text-align: left;
+    background-color: #FFFFFF;
+
+  }
+  
+  .option{
+    height: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .option:hover{
+    background-color: #B588F4;
   }
 
   .buttons{
@@ -173,13 +205,35 @@ export const Calendar = styled.div`
     display: flex;
     justify-content: space-between;
   }
-
   .current-month{
     color: #0D0F10;
+  }
+  .current-month:hover{
+    color: #FFFFFF;
+    background-color: #8338EC;
+  }
+  .default-deadline{
+    background-color: #8338EC;
+    color: #FFFFFF;
+    border-radius: 2px;
   }
 
   .other-month{
     color: #6C757D;   
+  }
+
+  .selected-month{
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .month-switcher-arrows{
+    margin: 16px 78px 12px 0;
+    width: 48px;
+    height: 20px;
+    display: flex;
+    gap: 9.25px;
   }
 
   table{
@@ -222,14 +276,32 @@ export const Calendar = styled.div`
   }
 `
 export const DateSelection = styled.div`
+  position: relative;
   width: 318px;
   height: 45px;
-  padding: 14px;
   display: flex;
   justify-content: flex-start;
   gap: 6px;
-  border: 1px solid rgba(222, 226, 230, 1);
-  border-radius: 5px;
-  background-color: #FFFFFF;
-  color: #ADB5BD;
+  
+  .calendar-icon{
+    position: absolute;
+    top: 15.16px;
+    left: 15.33px;
+  }
+
+  .deadline{
+    width: 318px;
+    height: 45px;
+    padding-left: 36px;
+    border: 1px solid rgba(222, 226, 230, 1);
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    color: #ADB5BD;
+    font-family: FiraGO;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -1.25%;
+    outline: none;
+  }
 `
