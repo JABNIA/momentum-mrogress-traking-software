@@ -63,11 +63,12 @@ function Months() {
       setDefault(false);
       context.setDate(date);
       context.setDateString(
-        () => new Date(context.year, context.month, date).toLocaleDateString("de-DE")
+        () => `${date < 10 ? "0" + date: date}.${context.month < 10 ? "0" + context.month : context.month}.${context.year}`
       )
     }
     //change months with arrows
     const handleChangeMonth = (changer: boolean) => {
+      context.setDate(null)
       const index = monthsOfYear.findIndex(
         (month) => month.id === selectedMonth.id
       );
@@ -130,15 +131,16 @@ function Months() {
                   <tr>
                     {week.map((day, index) => {
                       return context.month === day.month ? (
-                        day.date < new Date().getDate() ? (
+                        day.date < context.today.getDate() && 
+                        day.month < context.today.getMonth() ? (
                           <td className={"current-month"} key={index}>
                             {day.date}
                           </td>
                         ) : (
                           <td
                             className={
-                              def ? 
-                              context.date +1 === day.date && 
+                              def && context.date !== null ? 
+                              context.date + 1 === day.date && 
                               context.month === day.month
                                 ? "current-month default-deadline"
                                 : "current-month"

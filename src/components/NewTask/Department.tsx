@@ -7,9 +7,11 @@ import { Select, Wrapper } from "./TaskStyled";
 function Department({
   department,
   setDepartment,
+  setDepChosen
 }: {
   department: department;
   setDepartment: React.Dispatch<React.SetStateAction<department>>;
+  setDepChosen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const [departments, setDepartments] = useState<department[]>([]);
   const [open, setOpen] = useState<boolean>(false);
@@ -23,7 +25,7 @@ function Department({
             headers: { bearerAuth: API_TOKEN },
         })
         .then((response) => setDepartments(response.data));
-        
+
         getDepartments()
     }catch (error){
         console.log(error)
@@ -57,6 +59,7 @@ function Department({
                   key={item.id}
                   onClick={() => {
                     setOpen(false);
+                    setDepChosen(true)
                     handleDepartmentSelect(item);
                   }}
                 >

@@ -11,12 +11,13 @@ import DateSelect from './datePiker/DateSelect'
 function NewTask() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState<string>("")
-  // const [deadline, setDeadline] = useState('')
-  const [assignedEmployee, setAssignedEmployee] = useState<employee | null>(null)
+  const [dateString, setDateString] = useState<string>("DD/MM/YYYY")
   const [dep, setDep] = useState<department>({
     id: 1,
     name: "ადმინისტრაციის დეპარტამენტი"
   })
+  const [depChosen, setDepChosen] = useState<boolean>(false);
+  const [assignedEmployee, setAssignedEmployee] = useState<employee | string>("")
   const [status, setStatus] = useState<status>({
     id: 1,
     name:"დასაწყები"
@@ -27,6 +28,8 @@ function NewTask() {
     icon: "https://momentum.redberryinternship.ge/storage/priority-icons/Medium.svg",
   })
   
+
+
   useEffect(() => {
     try{
     }catch (error) {  
@@ -39,18 +42,18 @@ function NewTask() {
       <form action="post">
         
         <TaskName name={name} setName={setName}/>
-        <Department department={dep} setDepartment={setDep}/>
+        <Department department={dep} setDepartment={setDep} setDepChosen={setDepChosen}/>
 
-        <TaskDescription description={description} setDescription={setDescription}/>
-        {assignedEmployee !== null && 
+        <TaskDescription description={description} setDescription={setDescription} />
+         
         <ResponsibleEmployee assignedEmployee={assignedEmployee}
-         setAssignedEmployee={setAssignedEmployee}/>}
+         setAssignedEmployee={setAssignedEmployee} depChosen={depChosen}/>
         
         <div className='priority-status'>
           <Priorities priority={priority} setPriority={setPriority}/>
           <Status status={status} setStatus={setStatus}/>
         </div>
-        <DateSelect />
+        <DateSelect dateString={dateString} setDateString={setDateString}/>
       </form>
 
       <button>დავალებვის შექმნა</button>

@@ -55,6 +55,11 @@ export type task ={
     date: number,
   }
 
+  export interface DateSelectProps {
+    dateString: string,
+    setDateString: React.Dispatch<React.SetStateAction<string>>
+  }
+
   export interface dynamicDatesProps {
     today: Date,
     year: number, 
@@ -66,13 +71,13 @@ export type task ={
   export type CalendarContextValues = {
     today: Date,
     calendarOpened: boolean,
-    date: number,
+    date: number | null,
     month: number,
     year: number,
     deadline: string,
     dateString: string,
     setCalendarOpened: React.Dispatch<React.SetStateAction<boolean>>,
-    setDate:  React.Dispatch<React.SetStateAction<number>>,
+    setDate:  React.Dispatch<React.SetStateAction<number | null>>,
     setMonth: React.Dispatch<React.SetStateAction<number>>,
     setYear: React.Dispatch<React.SetStateAction<number>>,
     setDeadLine: React.Dispatch<React.SetStateAction<string>>,

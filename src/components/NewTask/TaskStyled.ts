@@ -239,7 +239,8 @@ export const Calendar = styled.div`
   table{
     width: 224px;
     height: 224px;
-    margin: 0 47px;
+    margin: 0 78px 0 16px;
+    padding: 6px 9px;
   }
 
   th {

@@ -1,6 +1,9 @@
 import React, { useState } from "react"
 import { Background, Inputs, Modal } from "./EmployeeStyled"
 import { Button } from "../Header/HeaderStyled"
+import { API_TOKEN } from "../Home/TasksPage"
+import axios from "axios"
+import { department } from "../../types/types"
 
 function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<boolean>>}) {
     const [name, setName] = useState<string>("")
@@ -9,7 +12,8 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
     
 
     const handleAddNewEmployee = () => {
-        setModal(false);
+        setModal(true);
+        createEmployee(name, surname, department);
     }
 
     const handleCloseModal = () => {
@@ -60,3 +64,16 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
     }
 
 export default NewEmployee
+
+async function createEmployee(name: string, surname: string, employeeDepartment: string){
+    const departmentId = await axios.get("https://momentum.redberryinternship.ge/api/departments", {headers:{bearerAuth: API_TOKEN}})
+    .then(response => response.data).then(data => data.filter((element:department) => element.name === employeeDepartment))
+    const newEmployee = {
+        name: name,
+        surname: surname,
+        avatar: "...",
+        department_id: departmentId[0].id
+    };
+    console.log(newEmployee)
+    axios.post("https://momentum.redberryinternship.ge/api/employees", newEmployee, {headers:{bearerAuth: API_TOKEN}}) 
+}
