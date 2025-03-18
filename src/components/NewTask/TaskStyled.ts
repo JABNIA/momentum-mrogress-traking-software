@@ -23,6 +23,45 @@ export const Select = styled.div<{ open: boolean }>`
   .wide {
     width: 550px;
   }
+  
+  
+
+  .icon {
+    display: inline-block;
+    margin: 14px 6px 14px 14px;
+  }
+
+  .dropdown-arrow{
+    position: absolute;
+    top: 20.65px;
+    right: 21px;
+  }
+  
+  
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+
+  p {
+    width: 119px;
+    height: 19px;
+    font-family: 'FiraGO';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #343A40;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px -2px;
+
+  }
+  
   .variants-container {
     padding: 0;
     list-style: none;
@@ -44,41 +83,32 @@ export const Select = styled.div<{ open: boolean }>`
     font-weight: lighter;
   }
 
-  .icon {
-    display: inline-block;
-    margin: 14px 6px 14px 14px;
-  }
-
-  .dropdown-arrow{
-    position: absolute;
-    top: 20.65px;
-    right: 21px;
-  }
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-
-  p {
-    /* სათაური */
-    width: 119px;
-    height: 19px;
-    font-family: 'FiraGO';
-    font-style: normal;
+  .add-employee{
+    width: 550px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    background-color: transparent;
+    color: #8338EC;
     font-weight: 400;
     font-size: 16px;
-    line-height: 19px;
-    /* Grey SHades/Subheadlines */
-    color: #343A40;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px -2px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+  
+  .add-employee span{
+    display: block;
+  }
 
+  .circle{
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid #8338EC;
+    border-radius: 30px;
   }
 `;
 
@@ -94,11 +124,14 @@ export const FormWrapper = styled.div`
     width: 100%;
     height: auto;
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 550px 550px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 161px;
+    row-gap: 55px;
+    /* grid-template-columns: 550px 550px;
     grid-template-rows: 106px 194px 260px;
     grid-column-gap: 161px;
-    grid-row-gap: 55px;
+    grid-row-gap: 55px; */
   }
 
   .input-wrapper {

@@ -16,7 +16,6 @@ function Status({status, setStatus}: {status: status, setStatus: React.Dispatch<
                 headers: { bearerAuth: API_TOKEN },
                 })
                 .then((response) => {
-                console.log(response);
                 setStatuses(response.data);
                 });
             };

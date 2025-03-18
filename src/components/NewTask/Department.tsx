@@ -39,7 +39,7 @@ function Department({
 
   return (
     <Wrapper style={{gridColumn: "2/3", gridRow: "1/2"}}>
-        <p>პრიორიტეტი*</p>
+        <p>დეპარტამენტი*</p>
         <Select onClick={() => setOpen(!open)} open={open} style={{width: "550px"}}>
           <div className="selection" >
             <span>{department.name}</span>

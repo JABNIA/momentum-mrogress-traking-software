@@ -19,18 +19,16 @@ function ResponsibleEmployee({
   useEffect(() => {
     try {
       const getAllEmployees = async () =>
-        await axios
-          .get("https://momentum.redberryinternship.ge/api/employees", {
-            headers: { bearerAuth: API_TOKEN },
+        await axios.get("https://momentum.redberryinternship.ge/api/employees", {
+            headers: { Authorization: `Bearer ${API_TOKEN}` },
           })
           .then((response) => setEmployees(response.data));
-
       getAllEmployees();
     } catch (error) {
       console.log(error);
     }
   }, []);
-
+  console.log(employees)
   const handleemployeeSelect = (employee: employee) => {
     setAssignedEmployee(employee);
   };
@@ -60,23 +58,26 @@ function ResponsibleEmployee({
               />
             </span>
           </div>
+          </Select>
 
           {open && (
-            <ul className="variants-container">
-              {employees.map((item) => (
-                <li
+            <>
+              <button className="add-employee"><span className="circle">+</span><span >დაამატე თანამშრომელი</span></button>
+              <ul className="variants-container">
+                {employees.map((item) => (
+                  <li
                   key={item.name + " " + item.surname}
                   onClick={() => {
                     setOpen(false);
                     handleemployeeSelect(item);
                   }}
-                >
-                  <span className="name">{item.name + " " + item.surname}</span>
-                </li>
-              ))}
-            </ul>
+                  >
+                    <span className="name">{item.name + " " + item.surname}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
-        </Select>
       </Wrapper>
     );
   } else {

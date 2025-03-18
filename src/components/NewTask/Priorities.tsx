@@ -22,7 +22,6 @@ function Priorities({
             headers: { bearerAuth: API_TOKEN },
           })
           .then((response) => {
-            console.log(response);
             setPriorities(response.data);
           });
       };

@@ -71,9 +71,9 @@ async function createEmployee(name: string, surname: string, employeeDepartment:
     const newEmployee = {
         name: name,
         surname: surname,
-        avatar: "...",
+        avatar: "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
         department_id: departmentId[0].id
     };
     console.log(newEmployee)
-    axios.post("https://momentum.redberryinternship.ge/api/employees", newEmployee, {headers:{bearerAuth: API_TOKEN}}) 
+    axios.post("https://momentum.redberryinternship.ge/api/employees", newEmployee, {headers:{Authorization: `Bearer ${API_TOKEN}`}}) 
 }
