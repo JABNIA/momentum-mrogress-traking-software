@@ -100,3 +100,12 @@ export type task ={
     setDeadLine: React.Dispatch<React.SetStateAction<string>>,
     setDateString: React.Dispatch<React.SetStateAction<string>>;
   }
+
+  export interface newTask {
+    name: string,
+      description: string,
+      due_date: string,
+      status_id: number,
+      employee_id: number,
+      priority_id: number
+  }

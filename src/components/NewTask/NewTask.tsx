@@ -7,9 +7,11 @@ import Department from './Department'
 import ResponsibleEmployee from './ResponsibleEmployee'
 import { FormWrapper } from './TaskStyled'
 import DateSelect from './datePiker/DateSelect'
+import axios from 'axios'
+import { API_TOKEN } from '../Home/TasksPage'
 
 function NewTask() {
-  const [name, setName] = useState('')
+  const [name, setName] = useState<string>('')
   const [description, setDescription] = useState<string>("")
   const [dateString, setDateString] = useState<string>("DD/MM/YYYY")
   const [dep, setDep] = useState<department>({
@@ -28,6 +30,18 @@ function NewTask() {
     icon: "https://momentum.redberryinternship.ge/storage/priority-icons/Medium.svg",
   })
 
+  const handleCreateNewTask = async () => {
+     await axios.post("https://momentum.redberryinternship.ge/api/tasks", {
+      name: name,
+      description: description,
+      due_date: dateString,
+      status_id: status.id,
+      employee_id: typeof assignedEmployee !== "string" ? assignedEmployee.id : null,
+      priority_id: priority.id
+  }, {headers:{Authorization: `Bearer ${API_TOKEN}`}})
+
+
+  }
 
   return (
     <FormWrapper>
@@ -48,7 +62,9 @@ function NewTask() {
         <DateSelect dateString={dateString} setDateString={setDateString}/>
       </form>
 
-      <button>დავალებვის შექმნა</button>
+      <button
+      onClick={handleCreateNewTask}
+      >დავალებვის შექმნა</button>
     </FormWrapper>
   )
 }

@@ -34,8 +34,9 @@ function ResponsibleEmployee({
       console.log(error);
     }
   }, []);
-  console.log(employees)
+
   const handleemployeeSelect = (employee: employee) => {
+    console.log(employee)
     setAssignedEmployee(employee);
   };
 

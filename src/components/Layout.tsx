@@ -4,8 +4,8 @@ import { useState } from "react"
 import NewEmployee from "./NewEmployee/NewEmployee"
 
 function Layout() {
-  const [modal, setModal] = useState<boolean>(true)
-  
+  const [modal, setModal] = useState<boolean>(false)
+
 
   return (
     <>

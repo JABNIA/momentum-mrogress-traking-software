@@ -11,6 +11,7 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
     const [department, setDepartment] = useState<string>("");
     const [file, setFile] = useState<File | null>(null);
 
+    
     const handleAddNewEmployee = () => {
         setModal(true);
         handleCreateEmployee();
@@ -35,12 +36,7 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
         newEmployee.append('avatar', file); // Ensure this is a File object
         newEmployee.append('department_id', departmentId[0].id);
         }
-        // {
-        //     name: name,
-        //     surname: surname,
-        //     avatar: file,
-        //     department_id: departmentId[0].id
-        // };
+
         console.log(newEmployee)
         axios.post("https://momentum.redberryinternship.ge/api/employees", newEmployee, {headers:{Authorization: `Bearer ${API_TOKEN}`}}) 
     }

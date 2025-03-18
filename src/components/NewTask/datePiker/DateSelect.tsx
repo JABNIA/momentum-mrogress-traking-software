@@ -61,9 +61,11 @@ function DateSelect({dateString, setDateString}: DateSelectProps) {
           </div>
           <div className="buttons">
             <button onClick={() => setCalendarOpened(false)}>Cancel</button>
-            <button onClick={() => 
+            <button onClick={(e) =>{
+              e.preventDefault();
+              setCalendarOpened(false);
               date !== null &&
-              setDeadLine(new Date(year, month, date ).toLocaleDateString("kg-GE"))}
+              setDateString(new Date(year, month, date ).toISOString())}}
               >OK</button>
           </div>
         </Calendar>

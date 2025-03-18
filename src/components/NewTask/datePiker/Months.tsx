@@ -63,7 +63,8 @@ function Months() {
       setDefault(false);
       context.setDate(date);
       context.setDateString(
-        () => `${date < 10 ? "0" + date: date}.${context.month < 10 ? "0" + context.month : context.month}.${context.year}`
+        // () => `${date < 10 ? "0" + date: date}.${context.month < 10 ? "0" + context.month : context.month}.${context.year}`
+        new Date(context.year, context.month, date).toISOString()
       )
     }
     //change months with arrows
