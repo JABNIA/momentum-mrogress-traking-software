@@ -6,14 +6,14 @@ import axios from "axios"
 import { department } from "../../types/types"
 
 function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<boolean>>}) {
-    const [name, setName] = useState<string>("")
-    const [surname, setSurname] = useState<string>("")
-    const [department, setDepartment] = useState<string>("")
-    
+    const [name, setName] = useState<string>("");
+    const [surname, setSurname] = useState<string>("");
+    const [department, setDepartment] = useState<string>("");
+    const [file, setFile] = useState<File | null>(null);
 
     const handleAddNewEmployee = () => {
         setModal(true);
-        createEmployee(name, surname, department);
+        handleCreateEmployee();
     }
 
     const handleCloseModal = () => {
@@ -23,35 +23,77 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
         setDepartment("");
     }
 
+    const handleCreateEmployee= async () => {
+        const departmentId = await axios.get("https://momentum.redberryinternship.ge/api/departments", {headers:{bearerAuth: API_TOKEN}})
+        .then(response => response.data)
+        .then(data => data.filter((element:department) => element.name === department))
+
+        const newEmployee = new FormData() 
+        if (file) {
+        newEmployee.append('name', name);
+        newEmployee.append('surname', surname);
+        newEmployee.append('avatar', file); // Ensure this is a File object
+        newEmployee.append('department_id', departmentId[0].id);
+        }
+        // {
+        //     name: name,
+        //     surname: surname,
+        //     avatar: file,
+        //     department_id: departmentId[0].id
+        // };
+        console.log(newEmployee)
+        axios.post("https://momentum.redberryinternship.ge/api/employees", newEmployee, {headers:{Authorization: `Bearer ${API_TOKEN}`}}) 
+    }
+    
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+        
+        console.log(file)
+        
+        if(file){
+            setFile(file)
+        }
+        
+    }
     return (
         <>
-        <Background>
+        <Background style={{zIndex: 20}}>
             <Modal>
                 <div className="close-btn" onClick={handleCloseModal}>
                     <img src="./assets/images/cross.svg" alt="cross" style={{}}/>
                 </div>
                 <h1 className="heading">თანამშრომლის დამატება</h1>
                 <Inputs>
+
                     <div className="name-surname">
                         <div className="input-wrapper">
                             <label htmlFor="name">სახელი*</label>
                             <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
                         </div>
+
                         <div className="input-wrapper">
                             <label htmlFor="surname">გვარი*</label>
                             <input type="text" name="surname"  value={surname} onChange={(e) => setSurname(e.target.value)}/>
                         </div>
                     </div>
-                    <div className="input-wrapper for-avatar">
+
+                    <div className="input-wrapper for-avatar"  onClick={() => setAvatar()}>
                         <label htmlFor="avatar">ავატარი*</label>
-                        <input className="avatar" type="file" name="avatar" />
+
+                        <div className="avatar-container">
+                            <img className="avatar-img" src="./assets/images/avatar-upload.svg" alt="Upload avatar" />
+                            <p className="upload-text">ატვირთე ფოტო</p>
+                            <input className="avatar-input" id="fileInput" type="file" name="avatar" onChange={handleFileChange} />
+                        </div>
                     </div>
+
                     <div className="input-wrapper">
                         <label htmlFor="department">
                             დეპარტამენტი*
                         </label>
                         <input type="text" name="department"  value={department} onChange={(e) => setDepartment(e.target.value)}/>
                     </div>
+
                 </Inputs>
                 <div className="buttons-container">
                     <Button bg="#FFFFFF" color="#000000" border={"true"} onClick={handleCloseModal}>გაუქმება</Button>
@@ -65,15 +107,9 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
 
 export default NewEmployee
 
-async function createEmployee(name: string, surname: string, employeeDepartment: string){
-    const departmentId = await axios.get("https://momentum.redberryinternship.ge/api/departments", {headers:{bearerAuth: API_TOKEN}})
-    .then(response => response.data).then(data => data.filter((element:department) => element.name === employeeDepartment))
-    const newEmployee = {
-        name: name,
-        surname: surname,
-        avatar: "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
-        department_id: departmentId[0].id
-    };
-    console.log(newEmployee)
-    axios.post("https://momentum.redberryinternship.ge/api/employees", newEmployee, {headers:{Authorization: `Bearer ${API_TOKEN}`}}) 
+
+
+
+function setAvatar(){
+    document.getElementById("fileInput")?.click()
 }

@@ -23,8 +23,6 @@ export const Select = styled.div<{ open: boolean }>`
   .wide {
     width: 550px;
   }
-  
-  
 
   .icon {
     display: inline-block;
@@ -41,6 +39,8 @@ export const Select = styled.div<{ open: boolean }>`
 `;
 
 export const Wrapper = styled.div`
+  height: 100px;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -128,10 +128,6 @@ export const FormWrapper = styled.div`
     flex-wrap: wrap;
     column-gap: 161px;
     row-gap: 55px;
-    /* grid-template-columns: 550px 550px;
-    grid-template-rows: 106px 194px 260px;
-    grid-column-gap: 161px;
-    grid-row-gap: 55px; */
   }
 
   .input-wrapper {

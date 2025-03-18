@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { department, employee, priority, status } from '../../types/types'
 import Priorities from './Priorities'
 import Status from './Status'
@@ -27,14 +27,6 @@ function NewTask() {
     name: 'საშუალო',
     icon: "https://momentum.redberryinternship.ge/storage/priority-icons/Medium.svg",
   })
-  
-
-
-  useEffect(() => {
-    try{
-    }catch (error) {  
-        console.log(error)
-      }}, [])
 
 
   return (
@@ -47,7 +39,7 @@ function NewTask() {
         <TaskDescription description={description} setDescription={setDescription} />
          
         <ResponsibleEmployee assignedEmployee={assignedEmployee}
-         setAssignedEmployee={setAssignedEmployee} depChosen={depChosen}/>
+         setAssignedEmployee={setAssignedEmployee} depChosen={depChosen} department={dep}/>
         
         <div className='priority-status'>
           <Priorities priority={priority} setPriority={setPriority}/>

@@ -4,13 +4,13 @@ import { useState } from "react"
 import NewEmployee from "./NewEmployee/NewEmployee"
 
 function Layout() {
-  const [modal, setModal] = useState<boolean>(false)
-  modal ? document.body.style.overflow = "hidden" : 
-  document.body.style.overflow = "visible"
+  const [modal, setModal] = useState<boolean>(true)
+  
+
   return (
     <>
       <Header setModal={setModal}/>
-      <Outlet /> 
+      <Outlet context={{setModal}}/> 
       {modal && <NewEmployee setModal={setModal}/>}
     </>
   )

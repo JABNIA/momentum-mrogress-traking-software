@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { employee } from "../../types/types";
+import { department, employee } from "../../types/types";
 import axios from "axios";
 import { API_TOKEN } from "../Home/TasksPage";
 import { Select, Wrapper } from "./TaskStyled";
+import { useOutletContext } from "react-router-dom";
 
 function ResponsibleEmployee({
   assignedEmployee,
   setAssignedEmployee,
   depChosen,
+  department,
 }: {
   assignedEmployee: employee | string;
   setAssignedEmployee: React.Dispatch<React.SetStateAction<employee | string>>;
   depChosen: boolean;
+  department: department;
 }) {
   const [employees, setEmployees] = useState<employee[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+  const {setModal} = useOutletContext
+  <{ setModal: React.Dispatch<React.SetStateAction<boolean>> }>();
+
 
   useEffect(() => {
     try {
@@ -35,7 +41,7 @@ function ResponsibleEmployee({
 
   if (depChosen) {
     return (
-      <Wrapper style={{ gridColumn: "2/3", gridRow: "2/3" }}>
+      <Wrapper style={{zIndex: "5"}}>
         <p style={{width: "auto"}}>პასუხისმგებელი თანამშრომელი*</p>
         <Select
           onClick={() => setOpen(!open)}
@@ -58,15 +64,17 @@ function ResponsibleEmployee({
               />
             </span>
           </div>
-          </Select>
 
           {open && (
             <>
-              <button className="add-employee"><span className="circle">+</span><span >დაამატე თანამშრომელი</span></button>
+              <button className="add-employee" onClick={()=> setModal(true)}>
+                <span className="circle">+</span><span >დაამატე თანამშრომელი</span>
+              </button>
               <ul className="variants-container">
-                {employees.map((item) => (
+                {employees.filter(employee => employee.department.id === department.id)
+                .map((item) => (
                   <li
-                  key={item.name + " " + item.surname}
+                  key={item.id}
                   onClick={() => {
                     setOpen(false);
                     handleemployeeSelect(item);
@@ -77,7 +85,8 @@ function ResponsibleEmployee({
                 ))}
               </ul>
             </>
-          )}
+              )}
+        </Select>
       </Wrapper>
     );
   } else {
@@ -89,13 +98,7 @@ function ResponsibleEmployee({
           style={{ width: "550px", borderColor: "#ADB5BD" }}
         >
           <div className="selection">
-            {typeof assignedEmployee !== "string" ? (
-              <span>
-                {assignedEmployee.name + " " + assignedEmployee.surname}
-              </span>
-            ) : (
-              <span>{assignedEmployee}</span>
-            )}
+              <span></span>
             <span>
               <img
                 className="dropdown-arrow"

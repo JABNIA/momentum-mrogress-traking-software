@@ -38,7 +38,7 @@ function Department({
   }
 
   return (
-    <Wrapper style={{gridColumn: "2/3", gridRow: "1/2"}}>
+    <Wrapper style={{zIndex: "10"}}>
         <p>დეპარტამენტი*</p>
         <Select onClick={() => setOpen(!open)} open={open} style={{width: "550px"}}>
           <div className="selection" >

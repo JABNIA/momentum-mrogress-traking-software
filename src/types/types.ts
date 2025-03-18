@@ -42,12 +42,29 @@ export type task ={
     name: string,
     icon: string
   }
-
-  export interface employee {
+  export type employee = {
+    id: number,
     name: string,
     surname: string,
-    avatar: string,
+    department: {
+      id:number,
+      name: string,
+    },
+    avatar: string
+  }
+  export interface postRequestEmployeeType {
+    name: string,
+    surname: string,
+    avatar: File,
     department_id: number
+  }
+
+  interface File{
+    lastModified: number,
+    name: string,
+    size: number,
+    type: string,
+    webkitRelativePAth: "",
   }
 
   export interface CalendarDate {

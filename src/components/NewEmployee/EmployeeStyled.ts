@@ -5,7 +5,7 @@ export const Background = styled.div`
     top:0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 1058px;
     background-color: rgba(13, 15, 16, 0.15);
     backdrop-filter: blur(2px);
 `
@@ -38,10 +38,27 @@ export const Modal = styled.div`
         grid-column: 1/3;
     }
 
-    .avatar{
-        width: 100%;
-        height: 100%;
-        border: 2px dashed #CED4DA;
+    .avatar-container {
+        width: 813px;
+        height: 120px;
+        border: 1px dashed #CED4DA;
+        border-radius: 8px;
+    }
+    .avatar-img{
+        margin: 50px 0 0 386px;
+    }
+
+    .avatar-input{
+        display: none;
+    }
+
+    .upload-text{
+        margin-top: 5px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
     }
 
     .heading{
