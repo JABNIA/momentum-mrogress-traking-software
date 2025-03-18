@@ -5,10 +5,11 @@ import Status from './Status'
 import { TaskName, TaskDescription } from './Inputs'
 import Department from './Department'
 import ResponsibleEmployee from './ResponsibleEmployee'
-import { FormWrapper } from './TaskStyled'
+import { FormWrapper, NewTaskButtonLink } from './TaskStyled'
 import DateSelect from './datePiker/DateSelect'
 import axios from 'axios'
 import { API_TOKEN } from '../Home/TasksPage'
+import { ButtonLink } from '../Header/HeaderStyled'
 
 function NewTask() {
   const [name, setName] = useState<string>('')
@@ -47,24 +48,53 @@ function NewTask() {
     <FormWrapper>
       <form action="post">
         
-        <TaskName name={name} setName={setName}/>
-        <Department department={dep} setDepartment={setDep} setDepChosen={setDepChosen}/>
+        <TaskName 
+          name={name} 
+          setName={setName}
+        />
+        <Department 
+          department={dep} 
+          setDepartment={setDep} 
+          setDepChosen={setDepChosen}
+        />
 
-        <TaskDescription description={description} setDescription={setDescription} />
+        <TaskDescription 
+          description={description} 
+          setDescription={setDescription} 
+        />
          
-        <ResponsibleEmployee assignedEmployee={assignedEmployee}
-         setAssignedEmployee={setAssignedEmployee} depChosen={depChosen} department={dep}/>
+        <ResponsibleEmployee 
+          assignedEmployee={assignedEmployee}
+          setAssignedEmployee={setAssignedEmployee} 
+          depChosen={depChosen} 
+          department={dep}
+        />
         
         <div className='priority-status'>
-          <Priorities priority={priority} setPriority={setPriority}/>
-          <Status status={status} setStatus={setStatus}/>
-        </div>
-        <DateSelect dateString={dateString} setDateString={setDateString}/>
-      </form>
+          <Priorities 
+          priority={priority} 
+          setPriority={setPriority}
+          />
 
-      <button
-      onClick={handleCreateNewTask}
-      >დავალებვის შექმნა</button>
+          <Status 
+          status={status} 
+          setStatus={setStatus}
+          />
+        </div>
+
+        <DateSelect 
+          dateString={dateString} 
+          setDateString={setDateString}
+        />
+      </form>
+      <NewTaskButtonLink 
+        to="/"
+        bg="#8338EC" 
+        color="#FFFFFF" 
+        border={"false"} 
+        onClick={handleCreateNewTask}
+        >დავალებვის შექმნა
+      </NewTaskButtonLink>
     </FormWrapper>
   )
 }

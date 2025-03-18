@@ -5,33 +5,6 @@ export type status = {
     name: string
 }
 
-export type task ={
-    id: number,
-    name: string,
-    description: string,
-    due_date: string,
-    status: {
-      id: number,
-      name: string
-    },
-    priority: {
-      id: number,
-      name: string,
-      icon: string
-    },
-    department: {
-      id: number,
-      name: string,
-    },
-    employee: {
-      id: number,
-      name: string,
-      surname: string,
-      avatar: string,
-      epartment_id: number
-    }
-  }
-
   export interface department {
     id: number,
     name: string 
@@ -108,4 +81,35 @@ export type task ={
       status_id: number,
       employee_id: number,
       priority_id: number
+  }
+
+  export type Task = {
+    id: number,
+    name: string,
+    description: string,
+    due_date: string,
+    department: {
+      id: number,
+      name: string
+    },
+    employee: {
+      id: number,
+      name: string,
+      surname: string,
+      avatar: string,
+      department: {
+        id: number,
+        name: string
+      }
+    },
+    status: {
+      id: number,
+      name: string
+    },
+    priority: {
+      id: number,
+      name: string,
+      icon: string
+    },
+    total_comments: number
   }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ButtonLink } from "../Header/HeaderStyled";
 
 export const Select = styled.div<{ open: boolean }>`
   width: 259px;
@@ -335,3 +336,14 @@ export const DateSelection = styled.div`
     outline: none;
   }
 `
+export const NewTaskButtonLink = styled(ButtonLink)`
+    position: absolute;
+    bottom: 62px;
+    left: 1053px;
+    width: 208px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+  `
