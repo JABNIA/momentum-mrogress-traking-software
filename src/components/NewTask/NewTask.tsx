@@ -9,7 +9,6 @@ import { FormWrapper, NewTaskButtonLink } from './TaskStyled'
 import DateSelect from './datePiker/DateSelect'
 import axios from 'axios'
 import { API_TOKEN } from '../Home/TasksPage'
-import { ButtonLink } from '../Header/HeaderStyled'
 
 function NewTask() {
   const [name, setName] = useState<string>('')

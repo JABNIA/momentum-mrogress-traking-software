@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { status } from '../../types/types'
-import Filters from './Filters'
 import { HomeWrapper, StatusTitle, TaskManagementWrapper, TaskStatuses } from './tasksStyled'
 import Tasks from './Tasks'
 

@@ -36,7 +36,16 @@ export const Select = styled.div<{ open: boolean }>`
     right: 21px;
   }
   
-  
+  .employee{
+    display: flex;
+    gap: 6px;
+  }
+
+  .employee-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
 `;
 
 export const Wrapper = styled.div`

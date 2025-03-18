@@ -13,7 +13,7 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
 
     
     const handleAddNewEmployee = () => {
-        setModal(true);
+        setModal(false);
         handleCreateEmployee();
     }
 
@@ -33,7 +33,7 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
         if (file) {
         newEmployee.append('name', name);
         newEmployee.append('surname', surname);
-        newEmployee.append('avatar', file); // Ensure this is a File object
+        newEmployee.append('avatar', file);
         newEmployee.append('department_id', departmentId[0].id);
         }
 
@@ -73,12 +73,21 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
                         </div>
                     </div>
 
-                    <div className="input-wrapper for-avatar"  onClick={() => setAvatar()}>
+                    <div className="input-wrapper for-avatar">
                         <label htmlFor="avatar">ავატარი*</label>
 
                         <div className="avatar-container">
-                            <img className="avatar-img" src="./assets/images/avatar-upload.svg" alt="Upload avatar" />
-                            <p className="upload-text">ატვირთე ფოტო</p>
+                        {file ? 
+                            <>
+                                <img className="uploaded-Image" src={uploadedFile(file)} alt="Upload avatar" />
+                                <img className="delete-icon" src="./assets/images/delete-image.svg" alt="Delete Avatat" onClick={() => setFile(null)}/>
+                            </>
+                        :
+                            <>
+                                <img className="avatar-img" src="./assets/images/avatar-upload.svg" alt="Upload avatar" onClick={() => setAvatar()}/>
+                                <p className="upload-text">ატვირთე ფოტო</p>
+                            </>
+                        }
                             <input className="avatar-input" id="fileInput" type="file" name="avatar" onChange={handleFileChange} />
                         </div>
                     </div>
@@ -103,7 +112,10 @@ function NewEmployee({setModal}: {setModal: React.Dispatch<React.SetStateAction<
 
 export default NewEmployee
 
-
+function uploadedFile(image: File){
+    const uploadedImage = URL.createObjectURL(image)
+    return uploadedImage;
+}
 
 
 function setAvatar(){

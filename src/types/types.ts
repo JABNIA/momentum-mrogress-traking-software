@@ -37,7 +37,7 @@ export type status = {
     name: string,
     size: number,
     type: string,
-    webkitRelativePAth: "",
+    webkitRelativePath: "",
   }
 
   export interface CalendarDate {

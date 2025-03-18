@@ -39,6 +39,7 @@ export const Modal = styled.div`
     }
 
     .avatar-container {
+        position: relative;
         width: 813px;
         height: 120px;
         border: 1px dashed #CED4DA;
@@ -46,6 +47,21 @@ export const Modal = styled.div`
     }
     .avatar-img{
         margin: 50px 0 0 386px;
+    }
+
+    .uploaded-Image {
+        position: absolute;
+        top: 16px;
+        left: 363px;
+        width: 88px;
+        height: 88px;
+        border-radius: 100px;
+    }
+
+    .delete-icon{
+        position: absolute;
+        top: 83px;
+        left: 430px;
     }
 
     .avatar-input{

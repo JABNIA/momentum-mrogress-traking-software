@@ -75,12 +75,14 @@ function ResponsibleEmployee({
                 {employees.filter(employee => employee.department.id === department.id)
                 .map((item) => (
                   <li
+                  className="employee"
                   key={item.id}
                   onClick={() => {
                     setOpen(false);
                     handleemployeeSelect(item);
                   }}
                   >
+                    <img className="employee-avatar" src={item.avatar} alt="" />
                     <span className="name">{item.name + " " + item.surname}</span>
                   </li>
                 ))}
