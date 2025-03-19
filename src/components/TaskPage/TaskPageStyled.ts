@@ -26,6 +26,74 @@ export const CommentsComponent = styled.section`
     background-color: var(--fourth-color);
     border: 0.3px solid var(--teriary-color);
     border-radius:  10px;
+
+    .comments{
+        margin: 66px 0 0 45px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+
+    .comm-count {
+        display: inline-block;
+        width: 30px;
+        height: 22px;
+        border-radius: 30px;
+        margin-left: 7px;
+        padding: 5px 11px;
+        background-color: var(--primary-color);
+        color: var(--text-color1);
+        font-family: FiraGO;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+
+    .nickname{
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        margin-bottom: 8px;
+
+    }
+
+    .comment-text{
+        font-weight: 350;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+
+    .comment-avatar{
+        width: 38px;
+        height: 38px    ;
+        border-radius: 40px;
+    }
+    
+    .reply-btn{
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .reply{
+        margin-left: 6px;
+        color: var(--primary-color);
+    }
+
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 40px 0 0 45px;
+    }
+    li{
+        width: 598px;
+        display: flex;
+        gap: 12px;
+        margin-bottom: 38px;
+    }
 `
 
 export const General = styled.div`

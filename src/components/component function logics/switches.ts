@@ -48,7 +48,6 @@ export const dateFormatorForTaskPage = (dateString: string | undefined) => {
       date.getDate() < 10 ? "0" + date.getDate() : `${date.getDate()}`;
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    console.log(date);
 
     return `${dayGeo} - ${monthDate}/${month}/${year}`;
   }

@@ -70,7 +70,7 @@ function Comments({task, id}:{task: Task | null, id: string | undefined}) {
                 console.log(error)
             })
             getComments();
-    }, [comment, allComments]);
+    }, [allComments]);
 
     const handleInputComment = (inputValue: string) => {
         setComment(inputValue);
@@ -106,11 +106,53 @@ function Comments({task, id}:{task: Task | null, id: string | undefined}) {
                 დააკომენტარე
             </CommentSubmitButton>
         </CommentInputWrapper>
-            {allComments?.map(comment => <p>{comment.text}</p>)}
+        <p className="comments">
+            <span>კომენტარები</span>
+            <span className='comm-count'>{allComments?.length}</span>
+        </p>
+        <ul>
+            {allComments?.map(comment => {
+                return <Comment comment={comment} />
+    })}
+        </ul>
         </CommentsComponent>
     )
 }
 
+
+function Comment({comment}: {comment: comment}) {
+    const [response, setResponse] = useState<boolean>(false);
+    const [responseText, setResponseText] = useState<string>("");
+
+    const handleInputComment = (responseText: string) => {
+        setResponseText(responseText);
+    }
+
+    return (
+        <>
+        <li key={comment.id}>
+            <div>
+                <img className="comment-avatar"src={comment.author_avatar} alt="author avatar" />
+            </div>
+            <div>
+                <p className="nickname">{comment.author_nickname}</p>
+                <p className="comment-text">{comment.text}</p>
+                <div className='reply-btn'>
+                    <img src="./assets/images/arrow-left.svg" alt="reply arrow" />
+                    <span className='reply' onClick={() => setResponse((curr: Boolean) => !curr)}>უპასუხე</span>
+                </div>
+
+            </div>
+        </li>
+        {
+        response && 
+            <div>
+                <CommentInput placeholder='დაწერე კომენტარი' value={responseText} onChange={(e) => handleInputComment(e.target.value)}/>
+            </div>
+        }
+        </>
+        )  
+}
 
 function TaskDetails({task, status, setStatus}: {task: Task, status: status | null, setStatus: React.Dispatch<React.SetStateAction<status | null>>}){
     
