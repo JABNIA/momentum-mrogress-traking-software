@@ -19,13 +19,25 @@ export const TaskInformation = styled.section`
 export const CommentsComponent = styled.section`
     width: 741px;
     min-height: 200px;
-    background-color: var(--teriary-color);
+    max-height: 975px;
+    margin-top:  99px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--fourth-color);
+    border: 0.3px solid var(--teriary-color);
+    border-radius:  10px;
 `
 
 export const General = styled.div`
     width: 100%;
     display: flex;  
     flex-direction: column;
+
+    & > div {
+        margin-bottom: 12px;
+        display: flex;
+        gap: 18px;
+    }
 `
 
 export const Heading = styled.p`
@@ -38,7 +50,6 @@ export const Heading = styled.p`
 
 export const Description = styled.p`
     margin-top: 26px;
-    font-weight: 400;
     font-size: 18px;
     line-height: 150%;
     letter-spacing: 0%;
@@ -55,7 +66,6 @@ export const Details = styled.div`
         height: 70px;
         display: flex;
         gap: 70px;
-        font-weight: 400;
         font-size: 16px;
         line-height: 150%;
         letter-spacing: 0%;
@@ -112,4 +122,62 @@ export const DetailsHeading = styled.p`
         gap: 6px;
     }
 
+`
+
+
+export const TaskPriority = styled.div<{color: string}>`
+    width: 106px;
+    height: 32px;
+    padding: 4px 5px;
+    color: ${props => props.color};
+    border: 0.5px solid ${props => props.color};
+    border-radius: 3px; 
+
+    & > img{
+        margin: 6px 0;
+    }
+`
+
+export const TaskDepartment = styled.div<{bgColor: string}>`
+    width: 88px;
+    height: 29px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    background-color: ${props => props.bgColor};
+    text-align: center;
+`
+
+export const CommentInputWrapper = styled.div`
+    width: 651px;
+    height: 135px;
+    margin: 40px 45px;
+    background-color: var(--text-color1);
+    border: 0.3px solid var(--border1);
+    border-radius: 10px;
+`
+
+export const CommentInput = styled.textarea`
+    width: 100%;
+    height: 85px;
+    resize: none;
+    padding: 18px 20px 15px 20px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+`
+
+export const CommentSubmitButton = styled.button`
+    width: 155px;
+    height: 35px;
+    border-radius: 20px;
+    margin-left: 456px;
+    padding: 8px 20px 8px 20px;
+    background-color: var(--primary-color);
+    color: var(--text-color1);
+    border: none;
+
+    &:hover {
+        background-color: var(--secondary-color);
+        cursor: pointer;
+    }
 `

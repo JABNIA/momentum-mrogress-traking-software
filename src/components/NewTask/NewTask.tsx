@@ -20,7 +20,7 @@ function NewTask() {
   })
   const [depChosen, setDepChosen] = useState<boolean>(false);
   const [assignedEmployee, setAssignedEmployee] = useState<employee | string>("")
-  const [status, setStatus] = useState<status>({
+  const [status, setStatus] = useState<status | null>({
     id: 1,
     name:"დასაწყები"
   })
@@ -35,7 +35,7 @@ function NewTask() {
       name: name,
       description: description,
       due_date: dateString,
-      status_id: status.id,
+      status_id: status?.id,
       employee_id: typeof assignedEmployee !== "string" ? assignedEmployee.id : null,
       priority_id: priority.id
   }, {headers:{Authorization: `Bearer ${API_TOKEN}`}})

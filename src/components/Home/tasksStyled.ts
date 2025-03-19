@@ -78,7 +78,6 @@ export const TaskDepartmentWrapper = styled.p<{bgColor:string}>`
     padding-bottom: 5px;
     padding-left: 9px;
     background-color: ${props => props.bgColor};
-    font-weight: 400;
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 0%;
@@ -89,7 +88,6 @@ export const TaskDepartmentWrapper = styled.p<{bgColor:string}>`
 export const TaskDeadline = styled.p`
     width: 76px;
     margin: 6px 0 0 71px;
-    font-weight: 400;
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 0%;
@@ -105,7 +103,6 @@ export const TaskTitle = styled.p`
 `
 
 export const TaskDescription = styled.p`
-    font-weight: 400;
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;

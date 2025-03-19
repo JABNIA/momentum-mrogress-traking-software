@@ -59,9 +59,7 @@ export const Wrapper = styled.div`
   p {
     width: 119px;
     height: 19px;
-    font-family: 'FiraGO';
     font-style: normal;
-    font-weight: 400;
     font-size: 16px;
     line-height: 19px;
     color: #343A40;
@@ -102,7 +100,6 @@ export const Wrapper = styled.div`
     border: none;
     background-color: transparent;
     color: #8338EC;
-    font-weight: 400;
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0%;
@@ -227,7 +224,6 @@ export const Calendar = styled.div`
   
   .option{
     height: 20px;
-    font-weight: 400;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -285,7 +281,6 @@ export const Calendar = styled.div`
   th {
     width: 32px;
     height: 32px;
-    font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0px;
@@ -296,7 +291,6 @@ export const Calendar = styled.div`
     width: 32px;
     height: 32px;
     border-radius: 2px;
-    font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0px;
@@ -308,7 +302,6 @@ export const Calendar = styled.div`
     background: transparent;
     border: none;
     color: #8338EC;
-    font-weight: 400;
     font-size: 13px;
     line-height: 100%;
     letter-spacing: 0px;
@@ -337,8 +330,6 @@ export const DateSelection = styled.div`
     border-radius: 5px;
     background-color: #FFFFFF;
     color: #ADB5BD;
-    font-family: FiraGO;
-    font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -1.25%;
@@ -350,7 +341,6 @@ export const NewTaskButtonLink = styled(ButtonLink)`
     bottom: 62px;
     left: 1053px;
     width: 208px;
-    font-weight: 400;
     font-size: 18px;
     line-height: 100%;
     letter-spacing: 0%;

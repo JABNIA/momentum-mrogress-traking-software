@@ -1,41 +1,128 @@
-import { useEffect, useState } from 'react'
-import { CommentsComponent, Description, Details, DetailsHeading, General, Heading, TaskInformation, TaskPageWrapper } from './TaskPageStyled'
+import React, { useEffect, useState } from 'react'
+import { CommentInput, CommentInputWrapper, CommentsComponent, CommentSubmitButton, Description, Details, DetailsHeading, General, Heading, TaskDepartment, TaskInformation, TaskPageWrapper, TaskPriority } from './TaskPageStyled'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { API_TOKEN } from '../Home/TasksPage'
-import { status, Task } from '../../types/types'
+import { status, Task, comment } from '../../types/types'
 import Status from '../NewTask/Status'
-import { dateFormatorForTaskPage } from '../component function logics/switches'
+import { bgColor, dateFormatorForTaskPage, fontColor, formatDepartment } from '../component function logics/switches'
 
 function TaskPage() {
     const { id } = useParams();
     const [task, setTask] = useState<Task | null>(null);
     const [status, setStatus] = useState<status | null>(null)
+    
+
     useEffect(() => {
         const getTask = async () => 
-
-                await axios.get(`https://momentum.redberryinternship.ge/api/tasks/${id}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${API_TOKEN}`
-                        }
+            await axios.get(`https://momentum.redberryinternship.ge/api/tasks/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${API_TOKEN}`
                     }
-                ).then(response => {
-                    setTask(response.data)
-                    setStatus(response.data.status)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-                getTask()
-    }, [])
+                }
+            ).then(response => {
+                setTask(response.data)
+                setStatus(response.data.status)
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
+            getTask()
+    }, []);
+    
     dateFormatorForTaskPage(task?.due_date)
     if(task !== null) {
         return (
             <TaskPageWrapper>
-            <TaskInformation>
+                <TaskDetails task={task} status={status} setStatus={setStatus}/>
+                <Comments task={task} id={id}/>
+            </TaskPageWrapper>
+  )
+}else{
+    <div>
+        <h1>Whoops Something went Wrong</h1>
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fknowyourmeme.com%2Fmemes%2Fpunishers-no-no-no-wait-wait-wait&psig=AOvVaw3-ajX7u4EwYjdS0W_SM5vw&ust=1742451011205000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMj0kYm-lYwDFQAAAAAdAAAAABAE" alt="NO, NO, NO, NO! WAIT WAIT WAIT WAIT" />
+    </div>
+}
+
+}
+
+export default TaskPage;
+
+function Comments({task, id}:{task: Task | null, id: string | undefined}) {
+    const [comment, setComment] = useState<string>("");
+    const [allComments, setAllComments] = useState<comment[] | null>(null);
+
+    useEffect(() => {
+        const getComments = async () => 
+            await axios.get(`https://momentum.redberryinternship.ge/api/tasks/${id}/comments`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${API_TOKEN}`
+                    }
+                }
+            ).then(response => {
+                setAllComments(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            getComments();
+    }, [comment, allComments]);
+
+    const handleInputComment = (inputValue: string) => {
+        setComment(inputValue);
+    } 
+
+    const handleUpdateComment = () => {
+        const commentObj = {
+            text: comment,
+            parent_id: null,
+        }
+        
+        try{
+            axios.post(`https://momentum.redberryinternship.ge/api/tasks/${task?.id}/comments`,
+                commentObj,
+                {
+                    headers: {
+                        Authorization: `Bearer ${API_TOKEN}`
+                    }
+                }
+            )
+        }catch (error){
+            console.log(error);
+        }
+
+        setComment("");
+    }
+    
+    return (
+        <CommentsComponent>
+        <CommentInputWrapper>
+            <CommentInput placeholder='დაწერე კომენტარი' value={comment} onChange={(e) => handleInputComment(e.target.value)}/>
+            <CommentSubmitButton onClick={handleUpdateComment}>
+                დააკომენტარე
+            </CommentSubmitButton>
+        </CommentInputWrapper>
+            {allComments?.map(comment => <p>{comment.text}</p>)}
+        </CommentsComponent>
+    )
+}
+
+
+function TaskDetails({task, status, setStatus}: {task: Task, status: status | null, setStatus: React.Dispatch<React.SetStateAction<status | null>>}){
+    
+    return(
+        <TaskInformation>
                 <General>
+                    <div>
+                        <TaskPriority color={fontColor(task.priority.id)}>
+                            <span><img src={task.priority.icon} alt="priority icon" /> {task.priority.name}</span>
+                        </TaskPriority>
+                        <TaskDepartment bgColor={bgColor(task.department.id)}>{formatDepartment(task.department.id)}</TaskDepartment>
+                    </div>
                     <Heading>
                         {task.name}
                     </Heading>
@@ -79,17 +166,6 @@ function TaskPage() {
                         </div>
                     </div>
                 </Details>
-            </TaskInformation> 
-            <CommentsComponent />
-        </TaskPageWrapper>
-  )
-}else{
-    <div>
-        <h1>Whoops Something went Wrong</h1>
-        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fknowyourmeme.com%2Fmemes%2Fpunishers-no-no-no-wait-wait-wait&psig=AOvVaw3-ajX7u4EwYjdS0W_SM5vw&ust=1742451011205000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMj0kYm-lYwDFQAAAAAdAAAAABAE" alt="NO, NO, NO, NO! WAIT WAIT WAIT WAIT" />
-    </div>
+            </TaskInformation>
+    )
 }
-
-}
-
-export default TaskPage

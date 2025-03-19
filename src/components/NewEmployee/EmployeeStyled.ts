@@ -70,7 +70,6 @@ export const Modal = styled.div`
 
     .upload-text{
         margin-top: 5px;
-        font-weight: 400;
         font-size: 14px;
         line-height: 100%;
         letter-spacing: 0%;
@@ -113,7 +112,6 @@ export const Inputs = styled.div`
     grid-column-gap: 45px;
 
     .name-surname{
-        grid-columns: 1/3;
         display: flex;
         justify-content: space-between;
         gap: 45px;
