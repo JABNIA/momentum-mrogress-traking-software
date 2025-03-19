@@ -3,6 +3,8 @@ import { API_TOKEN } from './TasksPage'
 import { Task } from '../../types/types'
 import axios from 'axios'
 import { PriorityWrapper, TaskComments, TaskDeadline, TaskDepartmentWrapper, TaskDescription, TaskTitle, TaskWrapper } from './tasksStyled'
+import { Link } from 'react-router-dom'
+import { bgColor, color, dateFormatorForHomePage, fontColor, formatDepartment } from '../component function logics/switches'
 
 function Tasks({status}:{status: {id: number, name:string}}) {
     const [tasks, setTasks] = useState<Task[] | null>(null)
@@ -30,70 +32,32 @@ function Tasks({status}:{status: {id: number, name:string}}) {
         <div>
             <p className="status"></p>
         </div>
-      {tasks?.map(task => <TaskComponent task={task} />)}
-    </div>
+        {
+        tasks?.map(task => {
+            return (
+                <Link to={`/task/${task.id}`} style={{color: "var(--text-color2)", textDecoration: "none"}}>
+                    <TaskComponent task={task} />
+                </Link>
+                )
+            })}
+        </div>
   )
 }
-
-
-
 function TaskComponent({task}: {task: Task}) {
-    const color = () => {
-        switch(task.status.id){
-                    case 2: 
-                    return "#FB5607";
-                    case 3:
-                    return "#FF006E";
-                    case 4:
-                    return "#3A86FF";
-                    default:
-                    return "#F7BC30";
-                        
-    }
-}
-    
-    const fontColor = () => {
-        switch(task.priority.id){
-                    case 1: 
-                    return "#08A508";
-                    case 3:
-                    return "#FA4D4D";
-                    default: 
-                    return "#FFBE0B";
-    }
-}
-    const bgColor = () => {
-        switch(task.department.id){
-                case 1: 
-                return "#08a590";
-                case 3:
-                return "#FF66A8";
-                case 4:
-                return "#FD9A6A";
-                case 5:
-                return "#f01111";
-                case 6:
-                return "#26ee4a";
-                case 7:
-                return "#fa4de6";
-                default: 
-                return "#FFBE0B";
-}
-}
     return (
-        <TaskWrapper borderColor={color()}>
+        <TaskWrapper borderColor={color(task.status.id)}>
             <div className="task-info">
 
-                <PriorityWrapper color={fontColor()}>
+                <PriorityWrapper color={fontColor(task.priority.id)}>
                     <img src={task.priority.icon} alt="icon" />
                     <span>{task.priority.name}</span>
                 </PriorityWrapper>
 
-                <TaskDepartmentWrapper bgColor={bgColor()}>
+                <TaskDepartmentWrapper bgColor={bgColor(task.department.id)}>
                     {formatDepartment(task.department.id)}
                 </TaskDepartmentWrapper>
                 <TaskDeadline>
-                    {task.due_date.substring(0, 10).split("-").join(" ")}
+                    {dateFormatorForHomePage(task.due_date)}
                 </TaskDeadline>
             </div>
             <div className="name-desc">
@@ -117,25 +81,3 @@ function TaskComponent({task}: {task: Task}) {
 
 
 export default Tasks
-
-
-function formatDepartment(department: number){
-    switch(department){
-        case 1: 
-        return "ადმ. დეპ.";
-        case 2: 
-        return "ადამ. რეს.";
-        case 3: 
-        return "ფინანსები";
-        case 4: 
-        return "მარკეტინგი";
-        case 5: 
-        return "ლოჯისტიკა";
-        case 6: 
-        return "ტექ. დეპ.";
-        case 7: 
-        return "მედია";
-        default:
-        return "";
-    }
-}

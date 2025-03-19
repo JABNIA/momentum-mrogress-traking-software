@@ -4,7 +4,7 @@ import axios from 'axios';
 import { API_TOKEN } from '../Home/TasksPage';
 import { Select, Wrapper } from './TaskStyled';
 
-function Status({status, setStatus}: {status: status, setStatus: React.Dispatch<React.SetStateAction<status>>} ) {
+function Status({status, setStatus}: {status: status | null, setStatus: React.Dispatch<React.SetStateAction<status | null>>} ) {
     const [statuses, setStatuses] = useState<status[]>([])
     const [open, setOpen] = useState(false)
     
@@ -33,10 +33,10 @@ function Status({status, setStatus}: {status: status, setStatus: React.Dispatch<
 
     return (
      <Wrapper>
-          <p>სტატუსი*</p>
+          <p className='status-name'>სტატუსი*</p>
           <Select onClick={() => setOpen(!open)} open={open}>
             <div className="selection">
-              <span>{status.name}</span>
+              <span>{status?.name}</span>
               <span><img className="dropdown-arrow" src={`./assets/images/arrow-${open ? "up.svg" : "down.svg"}`} alt="dropdown arrow"/></span>
             </div>
     

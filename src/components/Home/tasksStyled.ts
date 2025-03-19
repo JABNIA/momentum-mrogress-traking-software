@@ -87,7 +87,8 @@ export const TaskDepartmentWrapper = styled.p<{bgColor:string}>`
 `
 
 export const TaskDeadline = styled.p`
-    margin: 6px 0 0 85px;
+    width: 76px;
+    margin: 6px 0 0 71px;
     font-weight: 400;
     font-size: 12px;
     line-height: 100%;

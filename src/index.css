@@ -25,6 +25,17 @@
 }
 
 
+:root{
+    --primary-color: #8338CE;
+    --secondary-color: #B588F4;
+    --teriary-color: #DDD2FF;
+    --text-color1: #FFFFFF;
+    --text-color2: #0D0F10;
+    --text-color3: #DEE2E6;
+    --text-color4: #474747;
+}
+
+
 * {
     margin: 0;
     padding: 0;
