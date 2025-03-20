@@ -34,7 +34,7 @@ export const bgColor = (department: number) => {
     case 6:
       return "#26ee4a";
     case 7:
-      return "#fa4de6";
+      return "#fa1de6";
     default:
       return "#FFBE0B";
   }
@@ -64,24 +64,24 @@ export const dateFormatorForHomePage = (dateString: string | undefined) => {
   }
 };
 
-export function formatDepartment(department: number) {
-  switch (department) {
-    case 1:
+export function formatDepartment(text: string) {
+  switch (text) {
+    case "ადმინისტრაციის დეპარტამენტი":
       return "ადმ. დეპ.";
-    case 2:
+    case "ადამიანური რესურსების დეპარტამენტი":
       return "ადამ. რეს.";
-    case 3:
+    case "ფინანსების დეპარტამენტი":
       return "ფინანსები";
-    case 4:
+    case "გაყიდვები და მარკეტინგის დეპარტამენტი":
       return "მარკეტინგი";
-    case 5:
+    case "ლოჯოსტიკის დეპარტამენტი":
       return "ლოჯისტიკა";
-    case 6:
+    case "ტექნოლოგიების დეპარტამენტი":
       return "ტექ. დეპ.";
-    case 7:
+    case "მედიის დეპარტამენტი":
       return "მედია";
     default:
-      return "";
+      return text;
   }
 }
 

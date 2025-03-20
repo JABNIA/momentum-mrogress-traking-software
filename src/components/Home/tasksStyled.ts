@@ -107,11 +107,98 @@ export const TaskDescription = styled.p`
     line-height: 100%;
     letter-spacing: 0%;
 `
-
 export const TaskComments = styled.div`
     width: 341px;
     height: 31px;
     margin-top: 28px;
     display: flex;
     justify-content: space-between;
+`
+
+export const FormWrapper = styled.div`
+    position: relative;
+    width: 688px;
+    height: 44px;
+    margin: 52px 0 25px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #DEE2E6;
+    border-radius: 10px;
+`
+
+export const SelectContainer = styled.div`
+    position: absolute;
+    top: 55px;
+    width: 688px;
+    height: 298px;
+    padding: 40px 30px 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #8338EC;
+    border-radius: 10px;
+    box-sizing: border-box;
+`
+
+export const OprionsWrapper = styled.ul`
+    width: 688px;
+    height: 178px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 22px;
+    overflow-y: auto;
+    list-style: none;
+`
+    
+export const LiOptions = styled.li<{color: string, check: boolean}>`
+    position: relative;
+    height: 22px;
+
+    input {
+        display: none;
+    }
+    label{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    label::before{
+        content: "";
+        width: 22px;
+        height: 22px;
+        display: inline-block;
+        border: 1.5px solid ${props => props.color};
+        border-radius: 6px;
+    }
+
+    svg{
+        position: absolute;
+        visibility: ${props => props.check ? "visible" : "hidden"};
+        top: 7.33px;
+        left: 5.6px;
+        stroke: ${props => props.color};
+    }
+`
+
+export const FilterList = styled.ul`
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    list-style: none;
+
+    li{
+        padding: 6px 10px;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+        color: #343A40;      
+        border: 1px solid #CED4DA;
+        border-radius: 43px;
+        display: flex;
+        align-items: center;
+    }
 `

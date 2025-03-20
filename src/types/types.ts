@@ -132,3 +132,9 @@ export type comment = {
         }
      ]
   }
+
+export type Filters = {
+  department: string[],
+  priority: string[],
+  employee: string
+}

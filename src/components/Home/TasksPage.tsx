@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { status } from '../../types/types'
+import { Filters, status } from '../../types/types'
 import { HomeWrapper, StatusTitle, TaskManagementWrapper, TaskStatuses } from './tasksStyled'
 import Tasks from './Tasks'
+import FiltersComponent from './Filters'
+
 
 export const API_TOKEN = "9e698a66-2544-43b5-bdba-60bbee3de2f5"
 
 
 function HomePage() {
     const [statuses, setStatuses] = useState<status[] | null>(null);
+    const [allFilters, setAllFilters] = useState<Filters>({department: [], priority: [], employee: ""});
 
     useEffect(() => {
         try{
@@ -29,7 +32,7 @@ function HomePage() {
   return (
     <HomeWrapper>
         <p style={{fontSize: "34px  "}}>დავალებების გვერდი</p>
-        {/* <Filters /> */}
+        <FiltersComponent allFilters={allFilters} setAllFilters={setAllFilters}/>
         <TaskManagementWrapper>
             {
                 statuses?.map(status => {
@@ -38,7 +41,7 @@ function HomePage() {
                             <StatusTitle id={status.id}>
                                 {status.name}
                             </StatusTitle>
-                            <Tasks status={status}/>
+                            <Tasks status={status} filters={allFilters}/>
                         </TaskStatuses>
                     )
                 })

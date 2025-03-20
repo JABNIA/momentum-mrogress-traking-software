@@ -237,7 +237,7 @@ function TaskDetails({
             </span>
           </TaskPriority>
           <TaskDepartment bgColor={bgColor(task.department.id)}>
-            {formatDepartment(task.department.id)}
+            {formatDepartment(task.department.name)}
           </TaskDepartment>
         </div>
         <Heading>{task.name}</Heading>

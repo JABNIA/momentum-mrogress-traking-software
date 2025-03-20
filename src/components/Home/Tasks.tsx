@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { API_TOKEN } from './TasksPage'
-import { Task } from '../../types/types'
+import { Filters, Task } from '../../types/types'
 import axios from 'axios'
 import { PriorityWrapper, TaskComments, TaskDeadline, TaskDepartmentWrapper, TaskDescription, TaskTitle, TaskWrapper } from './tasksStyled'
 import { Link } from 'react-router-dom'
 import { bgColor, color, dateFormatorForHomePage, fontColor, formatDepartment } from '../component function logics/switches'
 
-function Tasks({status}:{status: {id: number, name:string}}) {
+function Tasks({status, filters}:{status: {id: number, name:string}, filters: Filters}) {
     const [tasks, setTasks] = useState<Task[] | null>(null)
 
     useEffect(() => {
@@ -35,12 +35,14 @@ function Tasks({status}:{status: {id: number, name:string}}) {
         </div>
         {
         tasks?.map(task => {
-            return (
+                
+                return (
                 <Link to={`/task/${task.id}`} style={{color: "var(--text-color2)", textDecoration: "none"}}>
                     <TaskComponent task={task} />
                 </Link>
                 )
-            })}
+            }
+        )}
         </div>
   )
 }
@@ -55,7 +57,7 @@ function TaskComponent({task}: {task: Task}) {
                 </PriorityWrapper>
 
                 <TaskDepartmentWrapper bgColor={bgColor(task.department.id)}>
-                    {formatDepartment(task.department.id)}
+                    {formatDepartment(task.department.name)}
                 </TaskDepartmentWrapper>
                 <TaskDeadline>
                     {dateFormatorForHomePage(task.due_date)}
