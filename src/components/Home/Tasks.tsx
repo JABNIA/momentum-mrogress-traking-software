@@ -26,7 +26,8 @@ function Tasks({status}:{status: {id: number, name:string}}) {
         }
 
     }, [])
-    console.log(tasks)
+
+    
   return (
     <div>
         <div>
