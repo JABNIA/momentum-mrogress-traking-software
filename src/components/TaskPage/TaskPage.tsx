@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CommentInput,
   CommentInputWrapper,
@@ -17,19 +17,18 @@ import {
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { API_TOKEN } from "../Home/TasksPage";
-import { status, Task, comment } from "../../types/types";
-import Status from "../NewTask/Status";
+import { Task, comment } from "../../types/types";
 import {
   bgColor,
   dateFormatorForTaskPage,
   fontColor,
   formatDepartment,
 } from "../component function logics/switches";
+import { DetailsStatus, DetailsEmployee, DetailsDueDate } from "./DetailsComponents";
 
 function TaskPage() {
   const { id } = useParams();
   const [task, setTask] = useState<Task | null>(null);
-  const [status, setStatus] = useState<status | null>(null);
 
   useEffect(() => {
     const getTask = async () =>
@@ -41,7 +40,6 @@ function TaskPage() {
         })
         .then((response) => {
           setTask(response.data);
-          setStatus(response.data.status);
         })
         .catch((error) => {
           console.log(error);
@@ -54,7 +52,7 @@ function TaskPage() {
   if (task !== null) {
     return (
       <TaskPageWrapper>
-        <TaskDetails task={task} status={status} setStatus={setStatus} />
+        <TaskDetails task={task}  />
         <Comments task={task} id={id} />
       </TaskPageWrapper>
     );
@@ -225,12 +223,8 @@ function Comment({ comment }: { comment: comment }) {
 
 function TaskDetails({
   task,
-  status,
-  setStatus,
 }: {
   task: Task;
-  status: status | null;
-  setStatus: React.Dispatch<React.SetStateAction<status | null>>;
 }) {
   return (
     <TaskInformation>
@@ -251,43 +245,12 @@ function TaskDetails({
       </General>
       <Details>
         <DetailsHeading>დავალების დეტალები</DetailsHeading>
-        <div className="details status">
-          <div>
-            <img src="./assets/images/status-icon.svg" alt="status icon" />
-            <span>სტატუსი</span>
-          </div>
-          <Status status={status} setStatus={setStatus} />
-        </div>
-        <div className="details employee">
-          <div>
-            <img
-              className="icon"
-              src="./assets/images/employee-icon.svg"
-              alt="employee icon"
-            />
-            <span>თანამშრომელი</span>
-          </div>
-          <div>
-            <img
-              className="avatar"
-              src={task.employee.avatar}
-              alt="Employee avatar"
-            />
-            <div style={{ marginTop: "-9px" }}>
-              <span className="empl dep">{task.employee.department.name}</span>
-              <span className="empl name">
-                {task.employee.name + " " + task.employee.surname}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="details deadline">
-          <div>
-            <img src="./assets/images/task-calendar.svg" alt="calenar icon" />
-            <span>დავალების ვადა</span>
-          </div>
-          <div>{dateFormatorForTaskPage(task.due_date)}</div>
-        </div>
+        
+        <DetailsStatus task={task} status={task.status}/>
+        
+        <DetailsEmployee employee={task.employee} />
+        
+        <DetailsDueDate dueDate={task.due_date} />
       </Details>
     </TaskInformation>
   );
