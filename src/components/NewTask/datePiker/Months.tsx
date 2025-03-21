@@ -62,10 +62,11 @@ function Months() {
     const handleSetDateString = (date:number) => {
       setDefault(false);
       context.setDate(date);
-      context.setDateString(
-        // () => `${date < 10 ? "0" + date: date}.${context.month < 10 ? "0" + context.month : context.month}.${context.year}`
-        new Date(context.year, context.month, date).toISOString()
-      )
+      const dateISOS = new Date(context.year, context.month, date).toISOString()
+      const formatedDateString = formatDate(dateISOS)
+
+
+      context.setDateString(formatedDateString)
     }
     //change months with arrows
     const handleChangeMonth = (changer: boolean) => {
@@ -74,12 +75,12 @@ function Months() {
         (month) => month.id === selectedMonth.id
       );
       const newObject = changer
-        ? monthsOfYear[index === 0 ? index : index - 1]
+        ? monthsOfYear[index === context.today.getMonth() ? index : index - 1]
         : monthsOfYear[index === 11 ? index : index + 1];
 
       setSelectedMonth(newObject);
       context?.setMonth(
-        monthsOfYear.findIndex((month) => month.id === selectedMonth.id + 1)
+        monthsOfYear.findIndex((month) => month.id === selectedMonth.id)
       );
     };
 
@@ -108,11 +109,13 @@ function Months() {
           </div>
           <div className="month-switcher-arrows">
             <img
+              style={{cursor: "pointer"}}
               src="./assets/images/calendar-arrow-up.svg"
               alt="Arrow up"
               onClick={() => handleChangeMonth(true)}
             />
             <img
+              style={{cursor: "pointer"}}
               src="./assets/images/calendar-arrow-down.svg"
               alt="Arrow down"
               onClick={() => handleChangeMonth(false)}
@@ -127,9 +130,9 @@ function Months() {
               ))}
             </thead>
             <tbody>
-              {weeks.map((week) => {
+              {weeks.map((week, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     {week.map((day, index) => {
                       return context.month === day.month ? (
                         day.date < context.today.getDate() && 
@@ -138,7 +141,7 @@ function Months() {
                             {day.date}
                           </td>
                         ) : (
-                          <td
+                          <td key={index}
                             className={
                               def && context.date !== null ? 
                               context.date + 1 === day.date && 
@@ -154,17 +157,16 @@ function Months() {
                             onClick={
                               () => handleSetDateString(day.date)
                               }
-                            key={index}
                             >
                             {day.date}
                           </td>
                         )
-                      ) : context.month >= day.month ? (
+                      ) : context.month <= day.month ? (
                         <td className={"other-month"} key={index}>
                           {day.date}
                         </td>
                       ) : (
-                        <td
+                        <td key={index}
                           className={context.date === day.date && 
                             context.today.getMonth() === day.month
                               ? "current-month default-deadline"
@@ -172,7 +174,6 @@ function Months() {
                           onClick={
                             () => handleSetDateString(day.date)
                           }
-                          key={index}
                         >
                           {day.date}
                         </td>
@@ -192,3 +193,15 @@ function Months() {
 }
 
 export default Months;
+
+
+
+function formatDate(dateString: string){
+  const dateObj = new Date(dateString);
+  const date = dateObj.getDate();
+  const month = dateObj.getMonth();
+  const year = dateObj.getFullYear();
+
+  return `${date < 10 ? "0" + date : date}/${month < 10 ? "0" + month : month}/${year < 10 ? "0" + year : year}`
+
+}

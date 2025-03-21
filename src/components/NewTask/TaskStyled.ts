@@ -258,6 +258,7 @@ export const Calendar = styled.div`
   }
   .current-month{
     color: #0D0F10;
+    cursor: pointer;
   }
   .current-month:hover{
     color: #FFFFFF;
@@ -311,6 +312,7 @@ export const Calendar = styled.div`
     line-height: 20px;
     letter-spacing: 0px;
     text-align: center;
+    cursor: pointer;
   }
 
 
@@ -336,6 +338,7 @@ export const DateSelection = styled.div`
     position: absolute;
     top: 15.16px;
     left: 15.33px;
+    cursor: pointer;
   }
 
   .deadline{
@@ -354,11 +357,12 @@ export const DateSelection = styled.div`
 `
 export const NewTaskButtonLink = styled(ButtonLink)`
     position: absolute;
-    bottom: 62px;
+    top: 806px;
     left: 1053px;
     width: 208px;
     font-size: 18px;
     line-height: 100%;
     letter-spacing: 0%;
     text-align: center;
+    z-index: 0;
   `

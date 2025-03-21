@@ -10,8 +10,8 @@ function ListItem({
     item: department | employee | priority;
     setAllFilters: React.Dispatch<React.SetStateAction<Filters>>;
   }) {
-    const localStorageFilters = localStorage.getItem("filters");
-    const local = localStorageFilters ? JSON.parse(localStorageFilters) : null;
+    // const localStorageFilters = localStorage.getItem("filters");
+    // const local = localStorageFilters ? JSON.parse(localStorageFilters) : null;
     const [checked, setChecked] = useState<boolean>(false);
     const [selectedEmployee, setSelectedEmployee] = useState<string | null>(null);
 

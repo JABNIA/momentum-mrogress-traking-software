@@ -51,7 +51,7 @@ function DateSelect({dateString, setDateString, setValidation}: DateSelectProps)
         <input className="deadline" 
           value={dateString} 
           onChange={(e) => {
-          setDateString(e.target.value)}}
+          setDateString((dateString))}}
         />
       </DateSelection>
       {calendarOpened && (
@@ -80,3 +80,5 @@ function DateSelect({dateString, setDateString, setValidation}: DateSelectProps)
 
 
 export default DateSelect;
+
+
