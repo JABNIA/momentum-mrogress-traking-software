@@ -8,12 +8,27 @@
 
 @font-face{
     font-family: 'FiraGO';
-    src: url('./fonts/FiraGO-Regular.woff2') format('woff2'),
-    url('./fonts/FiraGO-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    src: url('./fonts/FiraGO-Medium.woff2') format('woff2'),
+    url('./fonts/FiraGO-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: 500;
 }
 
+@font-face{
+    font-family: 'FiraGO';
+    src: url('./fonts/FiraGO-ExtraLight.woff2') format('woff2'),
+    url('./fonts/FiraGO-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: 200;
+}
+
+@font-face{
+    font-family: 'FiraGO';
+    src: url('./fonts/FiraGO-Bold.woff2') format('woff2'),
+    url('./fonts/FiraGO-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: 700;
+}
 
 @font-face {
     font-family: 'FredokaOne';
