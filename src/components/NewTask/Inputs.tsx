@@ -9,7 +9,7 @@ export function TaskName({name, setName, validation, setValidation}: NameInputPr
     }, [name])
     const handleInput = (value: string) => {
         setName(value)
-        setValidation(prev => {return {...prev, name: name.length > 2 &&  name.length < 255 ? true : false}})
+        setValidation(prev => {return {...prev, name: name.length > 2 && name.length < 255 ? true : false}})
         
     }
     if(validation.name === null){

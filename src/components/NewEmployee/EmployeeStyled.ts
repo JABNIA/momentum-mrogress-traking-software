@@ -24,6 +24,7 @@ export const Modal = styled.div`
     input {
         width: 382px;
         height: 42px;
+        padding: 0 10px;
         border: 1px solid #CED4DA;
         border-radius: 6px;
     }
@@ -46,7 +47,8 @@ export const Modal = styled.div`
         border-radius: 8px;
     }
     .avatar-img{
-        margin: 50px 0 0 386px;
+        margin: 53.25px 0 0 386px;
+        cursor: pointer;
     }
 
     .uploaded-Image {
@@ -101,7 +103,9 @@ export const Modal = styled.div`
         justify-content: flex-end;
         column-gap: 22px;
     }
-    
+    .selection{
+        cursor: pointer;
+    }
 `
 
 export const Inputs = styled.div`
@@ -115,5 +119,22 @@ export const Inputs = styled.div`
         display: flex;
         justify-content: space-between;
         gap: 45px;
+    }
+
+    .validCheck{ 
+      font-family: FiraGO;
+      font-weight: 350;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #6C757D;
+    }
+
+    .valid {
+      color: #08A508;
+    }
+
+    .invalid {
+      color:#FA4D4D;
     }
 `

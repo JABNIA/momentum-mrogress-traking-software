@@ -190,3 +190,10 @@ export interface StatusProps {
   setStatus: React.Dispatch<React.SetStateAction<status | null>>
   setValidation: React.Dispatch<React.SetStateAction<Validation>>;
 }
+
+export type ModalValidation = {
+  name: null | boolean,
+  surname: null | boolean, 
+  avatar: null | boolean,
+  department: null | boolean,
+}

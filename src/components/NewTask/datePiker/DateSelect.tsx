@@ -50,7 +50,7 @@ function DateSelect({dateString, setDateString, setValidation}: DateSelectProps)
         />
         <input className="deadline" 
           value={dateString} 
-          onChange={(e) => {
+          onChange={() => {
           setDateString((dateString))}}
         />
       </DateSelection>

@@ -8,7 +8,7 @@ export const Select = styled.div<{ open: boolean }>`
   border: 1px solid #dee2e6;
   border-radius: 5px;
   box-sizing: border-box;
-  padding: 0 0 0 14px;
+  padding: 0;
 
   .selection {
     position: relative;
@@ -19,7 +19,16 @@ export const Select = styled.div<{ open: boolean }>`
     column-gap: 6px;
     font-size: 14px;
     font-weight: lighter;
+    cursor: pointer;
+    padding: 0 0 0 14px
+
   }
+
+  li:hover {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+  }
+
 
   .wide {
     width: 550px;
@@ -27,7 +36,7 @@ export const Select = styled.div<{ open: boolean }>`
 
   .icon {
     display: inline-block;
-    margin: 14px 6px 14px 14px;
+    margin: 14px 6px 14px 0px;
   }
 
   .dropdown-arrow{
@@ -46,6 +55,11 @@ export const Select = styled.div<{ open: boolean }>`
     height: 30px;
     border-radius: 50%;
   }
+
+  li{
+    padding: 0 0 0 14px;
+  }
+
 `;
 
 export const Wrapper = styled.div`
@@ -55,6 +69,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
+  padding: 0;
 
   p {
     width: 119px;
@@ -103,6 +118,7 @@ export const Wrapper = styled.div`
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0%;
+    padding: 0 0 0 14px;
   }
   
   .add-employee span{
