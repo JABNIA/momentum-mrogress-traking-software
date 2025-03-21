@@ -148,6 +148,7 @@ export const Details = styled.div`
     .avatar{
         width: 32px;
         height: 32px;
+        border-radius: 50%;
     }
 
     .empl{
@@ -275,4 +276,9 @@ export const SubComments = styled.div`
 
 export const Commentli = styled.li`
     display: block;
+
+    .comment-wrapper{
+        display: flex;
+        gap: 12px;
+    }
 `

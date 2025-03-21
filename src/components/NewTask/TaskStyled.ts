@@ -189,6 +189,22 @@ export const FormWrapper = styled.div`
     box-sizing: border-box;
     }
 
+    .validCheck{ 
+      font-family: FiraGO;
+      font-weight: 350;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #6C757D;
+    }
+
+    .valid {
+      color: #08A508;
+    }
+
+    .invalid {
+      color:#FA4D4D;
+    }
 `
 
 export const Calendar = styled.div`

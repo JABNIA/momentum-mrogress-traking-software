@@ -85,15 +85,15 @@ function TaskComponent({task}: {task: Task}) {
             </div>
             <div className="name-desc">
                 <TaskTitle>{task.name}</TaskTitle>
-                <TaskDescription>{task.description.substring(0, 100)}</TaskDescription>
+                <TaskDescription>{task.description.length > 100 ? task.description.substring(0, 100)+"...": task.description}</TaskDescription>
             </div>
             <TaskComments>
                 <div>
                     <img className="emploee-avatar" src={task.employee.avatar} alt="Employee" />
                 </div>
-                <div>
+                <div className="comm-count">
                     <img src="./assets/images/Comments.svg" alt="Comment" />
-                    <span className="comm-count">
+                    <span>
                         {task.total_comments}
                     </span>
                 </div>

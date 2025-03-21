@@ -19,6 +19,16 @@ export const TaskStatuses =styled.section`
     .emploee-avatar{
         width: 31px;
         height: 31px;
+        border-radius: 50%;
+    }
+    .comm-count{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+
     }
 `
 
@@ -113,6 +123,12 @@ export const TaskComments = styled.div`
     margin-top: 28px;
     display: flex;
     justify-content: space-between;
+
+    .task-card-icon{
+        width: 31px;
+        height: 31px;
+        border-radius: 50%;
+    }
 `
 
 export const FormWrapper = styled.div`

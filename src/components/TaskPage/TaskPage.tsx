@@ -209,12 +209,14 @@ function Comment({ comment, task }: { comment: comment, task: Task | null }) {
   return (
     <>
       <Commentli key={comment.id}>
+        <div className="comment-wrapper">
+
         <div>
           <img
             className="comment-avatar"
             src={comment.author_avatar}
             alt="author avatar"
-          />
+            />
         </div>
         <div>
           <p className="nickname">{comment.author_nickname}</p>
@@ -224,13 +226,12 @@ function Comment({ comment, task }: { comment: comment, task: Task | null }) {
             <span
               className="reply-btn"
               onClick={() => setResponse((curr: Boolean) => !curr)}
-            >
+              >
               უპასუხე
             </span>
           </div>
         </div>
-        <div className="sub">
-
+      </div>
         {
           comment.sub_comments &&
           <SubComments>
@@ -251,7 +252,6 @@ function Comment({ comment, task }: { comment: comment, task: Task | null }) {
             )})}
           </SubComments>
           }
-          </div>
       </Commentli>
       {response && (
         <div>
