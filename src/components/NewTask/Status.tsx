@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { status } from '../../types/types';
+import { useEffect, useState } from 'react'
+import { status, StatusProps } from '../../types/types';
 import axios from 'axios';
 import { API_TOKEN } from '../Home/TasksPage';
 import { Select, Wrapper } from './TaskStyled';
 
-function Status({status, setStatus}: {status: status | null, setStatus: React.Dispatch<React.SetStateAction<status | null>>} ) {
+function Status({status, setStatus}:StatusProps ) {
     const [statuses, setStatuses] = useState<status[]>([])
     const [open, setOpen] = useState(false)
     

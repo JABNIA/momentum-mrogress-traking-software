@@ -1,16 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_TOKEN } from "../Home/TasksPage";
-import { priority } from "../../types/types";
+import { priority, PriorityProps } from "../../types/types";
 import { Select, Wrapper } from "./TaskStyled";
 
 function Priorities({
   priority,
   setPriority,
-}: {
-  priority: priority;
-  setPriority: React.Dispatch<React.SetStateAction<priority>>;
-}) {
+  setValidation
+}: PriorityProps) {
   const [priorities, setPriorities] = useState<priority[]>([]);
   const [open, setOpen] = useState(false);
 
@@ -34,6 +32,7 @@ function Priorities({
 
   const handlePrioritySelect = (priority: priority) => {
     setPriority(priority);
+    setValidation(prev => {return {...prev, priority: true}})
   };
 
   return (

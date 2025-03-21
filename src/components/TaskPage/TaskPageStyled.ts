@@ -206,12 +206,12 @@ export const TaskPriority = styled.div<{color: string}>`
     }
 `
 
-export const TaskDepartment = styled.div<{bgColor: string}>`
+export const TaskDepartment = styled.div<{bgcolor: string}>`
     width: 88px;
     height: 29px;
     border-radius: 15px;
     color: #FFFFFF;
-    background-color: ${props => props.bgColor};
+    background-color: ${props => props.bgcolor};
     text-align: center;
 `
 

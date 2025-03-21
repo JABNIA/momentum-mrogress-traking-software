@@ -4,10 +4,11 @@ import { Filters, Task } from '../../types/types'
 import axios from 'axios'
 import { PriorityWrapper, TaskComments, TaskDeadline, TaskDepartmentWrapper, TaskDescription, TaskTitle, TaskWrapper } from './tasksStyled'
 import { Link } from 'react-router-dom'
-import { bgColor, color, dateFormatorForHomePage, fontColor, formatDepartment } from '../component function logics/switches'
+import { bgcolor, color, dateFormatorForHomePage, fontcolor, formatDepartment } from '../component function logics/switches'
 
 function Tasks({status, filters}:{status: {id: number, name:string}, filters: Filters}) {
-    const [tasks, setTasks] = useState<Task[] | null>(null)
+    const [tasks, setTasks] = useState<Task[]>([])
+    const filteredTasks = filterTasks(tasks) 
 
     useEffect(() => {
         try{
@@ -15,48 +16,67 @@ function Tasks({status, filters}:{status: {id: number, name:string}, filters: Fi
                 headers: {
                     Authorization: `Bearer ${API_TOKEN}`
                 }
-            }).then(response => {
-                const filteredTasks = response.data.filter((task: Task) => task.status.name === status.name);
-                setTasks(filteredTasks);
+            }).then((response) => {
+                setTasks(filterTasks(response.data));
             })  
 
             getTasks()
         }catch (error) {
             console.log(error)
         }
-
     }, [])
 
-    
-  return (
+  
+    return (
     <div>
         <div>
             <p className="status"></p>
         </div>
         {
-        tasks?.map(task => {
-                
-                return (
-                <Link to={`/task/${task.id}`} style={{color: "var(--text-color2)", textDecoration: "none"}}>
-                    <TaskComponent task={task} />
-                </Link>
-                )
-            }
-        )}
+        filteredTasks?.map(task => {
+                if(task.status.name === status.name){
+                    return (
+                        <Link to={`/task/${task.id}`} key={task.id} style={{color: "var(--text-color2)", textDecoration: "none"}}>
+                            <TaskComponent task={task} />
+                        </Link>
+                    )
+                    }
+            })}
         </div>
-  )
+        )}
+
+function filterTasks(tasks: Task[]){
+    const localStorageFilters = localStorage.getItem("filters");
+    const local = localStorageFilters ? JSON.parse(localStorageFilters) : {department: [], priority: [], employee: ""};
+    let taskArr = tasks;
+    
+    if (local.department.length){
+        taskArr = taskArr.filter(task => local.department.includes(task.department.name))
+        }
+
+    if (local.priority.length){
+        taskArr = taskArr.filter(task => local.priority.includes(task.priority.name)) 
+    }    
+
+    if (local.employee !== ""){
+        taskArr = taskArr.filter(task => `${task.employee.name} ${task.employee.name}` === local.employee)
+        }
+    
+    return taskArr;
 }
+
+
 function TaskComponent({task}: {task: Task}) {
     return (
         <TaskWrapper borderColor={color(task.status.id)}>
             <div className="task-info">
 
-                <PriorityWrapper color={fontColor(task.priority.id)}>
+                <PriorityWrapper color={fontcolor(task.priority.id)}>
                     <img src={task.priority.icon} alt="icon" />
                     <span>{task.priority.name}</span>
                 </PriorityWrapper>
 
-                <TaskDepartmentWrapper bgColor={bgColor(task.department.id)}>
+                <TaskDepartmentWrapper bgcolor={bgcolor(task.department.id)}>
                     {formatDepartment(task.department.name)}
                 </TaskDepartmentWrapper>
                 <TaskDeadline>

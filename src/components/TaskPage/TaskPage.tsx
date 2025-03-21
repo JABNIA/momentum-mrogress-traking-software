@@ -19,9 +19,9 @@ import { useParams } from "react-router-dom";
 import { API_TOKEN } from "../Home/TasksPage";
 import { Task, comment } from "../../types/types";
 import {
-  bgColor,
+  bgcolor,
   dateFormatorForTaskPage,
-  fontColor,
+  fontcolor,
   formatDepartment,
 } from "../component function logics/switches";
 import { DetailsStatus, DetailsEmployee, DetailsDueDate } from "./DetailsComponents";
@@ -230,13 +230,13 @@ function TaskDetails({
     <TaskInformation>
       <General>
         <div>
-          <TaskPriority color={fontColor(task.priority.id)}>
+          <TaskPriority color={fontcolor(task.priority.id)}>
             <span>
               <img src={task.priority.icon} alt="priority icon" />{" "}
               {task.priority.name}
             </span>
           </TaskPriority>
-          <TaskDepartment bgColor={bgColor(task.department.id)}>
+          <TaskDepartment bgcolor={bgcolor(task.department.id)}>
             {formatDepartment(task.department.name)}
           </TaskDepartment>
         </div>

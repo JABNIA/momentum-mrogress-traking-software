@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { department } from "../../types/types";
+import { useEffect, useState } from "react";
+import { department, DepartmentProps } from "../../types/types";
 import axios from "axios";
 import { API_TOKEN } from "../Home/TasksPage";
 import { Select, Wrapper } from "./TaskStyled";
@@ -7,12 +7,10 @@ import { Select, Wrapper } from "./TaskStyled";
 function Department({
   department,
   setDepartment,
-  setDepChosen
-}: {
-  department: department;
-  setDepartment: React.Dispatch<React.SetStateAction<department>>;
-  setDepChosen: React.Dispatch<React.SetStateAction<boolean>>
-}) {
+  setDepChosen,
+  setValidation
+}: DepartmentProps
+) {
   const [departments, setDepartments] = useState<department[]>([]);
   const [open, setOpen] = useState<boolean>(false);
 
@@ -35,6 +33,7 @@ function Department({
 
   const handleDepartmentSelect = (department: department) =>{ 
     setDepartment(department)
+    setValidation(prev => {return {...prev, department: true}})
   }
 
   return (

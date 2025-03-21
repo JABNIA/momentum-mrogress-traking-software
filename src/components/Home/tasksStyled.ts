@@ -68,7 +68,7 @@ export const PriorityWrapper = styled.p<{color: string}>`
     gap: 4px;
 `   
 
-export const TaskDepartmentWrapper = styled.p<{bgColor:string}>`
+export const TaskDepartmentWrapper = styled.p<{bgcolor:string}>`
     width: 88px;
     height: 24px;
     gap: 10px;
@@ -77,7 +77,7 @@ export const TaskDepartmentWrapper = styled.p<{bgColor:string}>`
     padding-right: 9px;
     padding-bottom: 5px;
     padding-left: 9px;
-    background-color: ${props => props.bgColor};
+    background-color: ${props => props.bgcolor};
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 0%;

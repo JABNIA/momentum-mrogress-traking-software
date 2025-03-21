@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { department, employee } from "../../types/types";
+import { employee, EmployeeValidation } from "../../types/types";
 import axios from "axios";
 import { API_TOKEN } from "../Home/TasksPage";
 import { Select, Wrapper } from "./TaskStyled";
@@ -10,12 +10,8 @@ function ResponsibleEmployee({
   setAssignedEmployee,
   depChosen,
   department,
-}: {
-  assignedEmployee: employee | string;
-  setAssignedEmployee: React.Dispatch<React.SetStateAction<employee | string>>;
-  depChosen: boolean;
-  department: department;
-}) {
+  setValidation
+}: EmployeeValidation ) {
   const [employees, setEmployees] = useState<employee[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const {setModal} = useOutletContext
@@ -36,9 +32,9 @@ function ResponsibleEmployee({
   }, []);
 
   const handleemployeeSelect = (employee: employee) => {
-    console.log(employee)
     setAssignedEmployee(employee);
-  };
+    setValidation(prev => {return {...prev, employee: true}})
+    };
 
   if (depChosen) {
     return (

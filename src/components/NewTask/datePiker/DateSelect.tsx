@@ -7,7 +7,7 @@ import { CalendarContextValues, DateSelectProps } from "../../../types/types";
 export const CalendarContext = createContext<CalendarContextValues | null>(null);
 
 
-function DateSelect({dateString, setDateString}: DateSelectProps) {
+function DateSelect({dateString, setDateString, setValidation}: DateSelectProps) {
   const today = new Date();
   const [calendarOpened, setCalendarOpened] = useState<boolean>(false);
   const [date, setDate] = useState<number | null>(today.getDate());
@@ -63,6 +63,7 @@ function DateSelect({dateString, setDateString}: DateSelectProps) {
             <button onClick={() => setCalendarOpened(false)}>Cancel</button>
             <button onClick={(e) =>{
               e.preventDefault();
+              setValidation(prev => {return {...prev, date: true}})
               setCalendarOpened(false);
               date !== null &&
               setDateString(new Date(year, month, date ).toISOString())}}

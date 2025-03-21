@@ -48,6 +48,7 @@ export type status = {
   export interface DateSelectProps {
     dateString: string,
     setDateString: React.Dispatch<React.SetStateAction<string>>
+    setValidation: React.Dispatch<React.SetStateAction<Validation>>;
   }
 
   export interface dynamicDatesProps {
@@ -137,4 +138,55 @@ export type Filters = {
   department: string[],
   priority: string[],
   employee: string
+}
+
+export interface Validation {
+    name: null | boolean,
+    description: null | boolean,
+    department: null | boolean,
+    employee:null | boolean,
+    status: boolean,
+    priority: boolean,
+    date: null | boolean
+  }
+
+export interface NameInputProps {
+  name:string, 
+  setName: React.Dispatch<React.SetStateAction<string>>,
+  validation: Validation
+  setValidation: React.Dispatch<React.SetStateAction<Validation>>
+}
+
+export interface DescriptionInputProps {
+  description:string, 
+  setDescription: React.Dispatch<React.SetStateAction<string>>,
+  validation: Validation,
+  setValidation: React.Dispatch<React.SetStateAction<Validation>>,
+}
+
+export interface DepartmentProps {
+  department: department,
+  setDepartment: React.Dispatch<React.SetStateAction<department>>,
+  setDepChosen: React.Dispatch<React.SetStateAction<boolean>>,
+  setValidation: React.Dispatch<React.SetStateAction<Validation>>,
+}
+
+export interface EmployeeValidation {
+  assignedEmployee: employee | string;
+  setAssignedEmployee: React.Dispatch<React.SetStateAction<employee | string>>;
+  depChosen: boolean;
+  department: department;
+  setValidation: React.Dispatch<React.SetStateAction<Validation>>;
+}
+
+export interface PriorityProps {
+  priority: priority;
+  setPriority: React.Dispatch<React.SetStateAction<priority>>;
+  setValidation: React.Dispatch<React.SetStateAction<Validation>>;
+}
+
+export interface StatusProps {
+  status: status | null, 
+  setStatus: React.Dispatch<React.SetStateAction<status | null>>
+  setValidation: React.Dispatch<React.SetStateAction<Validation>>;
 }

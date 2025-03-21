@@ -11,7 +11,7 @@ export const color = (task: number) => {
   }
 };
 
-export const fontColor = (priority: number) => {
+export const fontcolor = (priority: number) => {
   switch (priority) {
     case 1:
       return "#08A508";
@@ -21,7 +21,7 @@ export const fontColor = (priority: number) => {
       return "#FFBE0B";
   }
 };
-export const bgColor = (department: number) => {
+export const bgcolor = (department: number) => {
   switch (department) {
     case 1:
       return "#08a590";
