@@ -29,7 +29,6 @@ function HomePage() {
             console.log(error)
         }
     }, [allFilters]) 
-    console.log(allFilters)
   return (
     <HomeWrapper>
         <p style={{fontSize: "34px  "}}>დავალებების გვერდი</p>

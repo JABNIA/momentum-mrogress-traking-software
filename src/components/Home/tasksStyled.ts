@@ -120,15 +120,19 @@ export const FormWrapper = styled.div`
     width: 688px;
     height: 44px;
     margin: 52px 0 25px;
+    padding: 0 18px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border: 1px solid #DEE2E6;
     border-radius: 10px;
+
 `
 
 export const SelectContainer = styled.div`
     position: absolute;
     top: 55px;
+    left: 0px;
     width: 688px;
     height: 298px;
     padding: 40px 30px 20px;
@@ -136,18 +140,39 @@ export const SelectContainer = styled.div`
     border: 1px solid #8338EC;
     border-radius: 10px;
     box-sizing: border-box;
+
+    button {
+        position: absolute;
+        right: 30px;
+        bottom: 20px;
+        width: 155px;
+        height: 35px;
+        padding: 8px 20px;
+        color: var(--text-color1);
+        font-family: FiraGO;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        border: none;
+        border-radius: 20px;
+        background-color: var(--primary-color);
+    }
 `
 
 export const OprionsWrapper = styled.ul`
-    width: 688px;
+    width: auto;
     height: 178px;
     padding: 0;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     row-gap: 22px;
+    overflow-x: hidden;
     overflow-y: auto;
     list-style: none;
+
+ 
 `
     
 export const LiOptions = styled.li<{color: string, check: boolean}>`

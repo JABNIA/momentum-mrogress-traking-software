@@ -65,6 +65,7 @@ export const CommentsComponent = styled.section`
         font-size: 16px;
         line-height: 100%;
         letter-spacing: 0%;
+        color: var(--text-color5);
     }
 
     .comment-avatar{
@@ -78,7 +79,7 @@ export const CommentsComponent = styled.section`
         cursor: pointer;
     }
 
-    .reply{
+    .reply-btn{
         margin-left: 6px;
         color: var(--primary-color);
     }
@@ -90,8 +91,6 @@ export const CommentsComponent = styled.section`
     }
     li{
         width: 598px;
-        display: flex;
-        gap: 12px;
         margin-bottom: 38px;
     }
 `
@@ -248,4 +247,32 @@ export const CommentSubmitButton = styled.button`
         background-color: var(--secondary-color);
         cursor: pointer;
     }
+`
+
+export const SubComments = styled.div`
+    margin: 20px 0 20px 53px;
+
+    .reply-wrapper{
+        display: flex;
+        gap: 12px;    
+        margin-bottom: 20px;
+    }
+    .author{
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    
+    .reply{
+        margin-top: 8px;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        color: var(--text-color5);
+    }
+`
+
+export const Commentli = styled.li`
+    display: block;
 `

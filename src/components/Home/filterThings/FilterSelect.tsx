@@ -52,8 +52,8 @@ function FilterSelect({
           {allItems?.map((item: department | employee | priority) => {
             return (
               <ListItem
-                item={item}
-                setAllFilters={setAllFilters}
+              item={item}
+              setAllFilters={setAllFilters}
               />
             );
           })}

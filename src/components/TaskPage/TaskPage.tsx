@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   CommentInput,
   CommentInputWrapper,
+  Commentli,
   CommentsComponent,
   CommentSubmitButton,
   Description,
@@ -9,6 +10,7 @@ import {
   DetailsHeading,
   General,
   Heading,
+  SubComments,
   TaskDepartment,
   TaskInformation,
   TaskPageWrapper,
@@ -89,7 +91,7 @@ function Comments({ task, id }: { task: Task | null; id: string | undefined }) {
           console.log(error);
         });
     getComments();
-  }, [allComments]);
+  }, []);
 
   const handleInputComment = (inputValue: string) => {
     setComment(inputValue);
@@ -116,6 +118,7 @@ function Comments({ task, id }: { task: Task | null; id: string | undefined }) {
     }
 
     setComment("");
+
     const resetComents = async () => {
         try{
             const comments = await axios.get(
@@ -153,7 +156,7 @@ function Comments({ task, id }: { task: Task | null; id: string | undefined }) {
       </p>
       <ul>
         {allComments?.map((comment) => {
-          return <Comment key={comment.id} comment={comment} />;
+          return <Comment key={comment.id} comment={comment} task={task}/>;
         })}
       </ul>
     </CommentsComponent>
@@ -176,7 +179,7 @@ function CommentTextarea({
   );
 }
 
-function Comment({ comment }: { comment: comment }) {
+function Comment({ comment, task }: { comment: comment, task: Task | null }) {
   const [response, setResponse] = useState<boolean>(false);
   const [responseText, setResponseText] = useState<string>("");
 
@@ -184,9 +187,28 @@ function Comment({ comment }: { comment: comment }) {
     setResponseText(responseText);
   };
 
+  const handleSubmitReply = async () => {
+    try {
+      await axios.post(
+        `https://momentum.redberryinternship.ge/api/tasks/${task?.id}/comments`,
+        {
+          text: responseText,
+          parent_id: comment.id
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${API_TOKEN}`,
+          },
+        }
+      );
+    }catch (error){
+      console.log(error)
+    }
+
+  }
   return (
     <>
-      <li key={comment.id}>
+      <Commentli key={comment.id}>
         <div>
           <img
             className="comment-avatar"
@@ -200,14 +222,37 @@ function Comment({ comment }: { comment: comment }) {
           <div className="reply-btn">
             <img src="./assets/images/arrow-left.svg" alt="reply arrow" />
             <span
-              className="reply"
+              className="reply-btn"
               onClick={() => setResponse((curr: Boolean) => !curr)}
             >
               უპასუხე
             </span>
           </div>
         </div>
-      </li>
+        <div className="sub">
+
+        {
+          comment.sub_comments &&
+          <SubComments>
+          {comment.sub_comments.map(subComent => {
+            return (
+              <div className="reply-wrapper">
+              <div className="avatar">
+                <img className="comment-avatar"
+                src={subComent.author_avatar}
+                alt="author avatar"
+                />
+              </div>
+              <div className="text-name">
+                <p className="author">{subComent.author_nickname}</p>
+                <p className="reply">{subComent.text}</p>
+              </div>
+              </div>
+            )})}
+          </SubComments>
+          }
+          </div>
+      </Commentli>
       {response && (
         <div>
           <CommentInput
@@ -215,11 +260,17 @@ function Comment({ comment }: { comment: comment }) {
             value={responseText}
             onChange={(e) => handleInputComment(e.target.value)}
           />
+          <CommentSubmitButton onClick={handleSubmitReply}>
+            პასუხი
+          </CommentSubmitButton>
         </div>
       )}
     </>
   );
 }
+
+
+
 
 function TaskDetails({
   task,

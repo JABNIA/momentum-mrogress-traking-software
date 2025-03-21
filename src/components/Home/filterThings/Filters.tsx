@@ -3,9 +3,8 @@ import { useState } from "react";
 import { API_TOKEN } from "../TasksPage";
 import { Filters } from "../../../types/types";
 import { FilterList, FormWrapper } from "../tasksStyled";
-import { formatDepartment,} from "../../component function logics/switches";
 import FilterSelect from "./FilterSelect";
-import { all } from "axios";
+// import { formatDepartment,} from "../../component function logics/switches";
 
 function FiltersComponent({
   allFilters,
@@ -22,39 +21,39 @@ function FiltersComponent({
   //ამას
   
     //აკონტროლებს სად წაშალოს ფილტრი მასზე ხელმეორედ დაჭერისას
-    const objectTarget = (filter: string) => {
-        if (allFilters.department.includes(filter)){
-            return "department"
-        }
-        if (allFilters.priority.includes(filter)){
-            return "priority"
-        }
-        if(allFilters.employee === filter){
-            return "employee"
-        }
-    }
+    // const objectTarget = (filter: string) => {
+    //     if (allFilters.department.includes(filter)){
+    //         return "department"
+    //     }
+    //     if (allFilters.priority.includes(filter)){
+    //         return "priority"
+    //     }
+    //     if(allFilters.employee === filter){
+    //         return "employee"
+    //     }
+    // }
 
     //შლის ფილტრს
-    const handleDeleteFilter = (categoryToRemove: string | undefined, value:string) => {
+    // const handleDeleteFilter = (categoryToRemove: string | undefined, value:string) => {
 
-        switch (categoryToRemove){
-            case "department":
-                setAllFilters(curr => {return {...curr, department: curr.department.filter(Name => Name !== value)}} )
-                localStorage.setItem("filters", JSON.stringify(allFilters))
-                break; 
-            case "priority":
-              setAllFilters(curr => {return {...curr, priority: curr.priority.filter(Name => Name !== value)}} )    
-            localStorage.setItem("filters", JSON.stringify(allFilters))
-                break; 
-            case "employee":
-              setAllFilters(curr => {return {...curr, employee: value}} )
+    //     switch (categoryToRemove){
+    //         case "department":
+    //             setAllFilters(curr => {return {...curr, department: curr.department.filter(Name => Name !== value)}} )
+    //             localStorage.setItem("filters", JSON.stringify(allFilters))
+    //             break; 
+    //         case "priority":
+    //           setAllFilters(curr => {return {...curr, priority: curr.priority.filter(Name => Name !== value)}} )    
+    //         localStorage.setItem("filters", JSON.stringify(allFilters))
+    //             break; 
+    //         case "employee":
+    //           setAllFilters(curr => {return {...curr, employee: value}} )
                 
-            localStorage.setItem("filters", JSON.stringify(allFilters))
-                break;
-            default: 
-                break;
-            }
-      };
+    //         localStorage.setItem("filters", JSON.stringify(allFilters))
+    //             break;
+    //         default: 
+    //             break;
+    //         }
+    //   };
 
 
       //ფილტრები მთლიანად

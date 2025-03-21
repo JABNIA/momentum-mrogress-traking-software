@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { department, employee, Filters, priority } from "../../../types/types";
 import { bgcolor } from "../../component function logics/switches";
 import { LiOptions } from "../tasksStyled";
@@ -10,9 +10,16 @@ function ListItem({
     item: department | employee | priority;
     setAllFilters: React.Dispatch<React.SetStateAction<Filters>>;
   }) {
-    const [checked, setChecked] = useState<boolean>(false);
     const localStorageFilters = localStorage.getItem("filters");
     const local = localStorageFilters ? JSON.parse(localStorageFilters) : null;
+    const [checked, setChecked] = useState<boolean>(false);
+    const [selectedEmployee, setSelectedEmployee] = useState<string | null>(null);
+
+    useEffect(() => {
+
+    }, [checked])
+
+
 
     const handleClick = (FilterCategory: string, value: string) => {
       setChecked((curr) => !curr);
@@ -20,17 +27,20 @@ function ListItem({
       switch (FilterCategory) {
         case "department":
           setAllFilters((curr) => {
-            if (curr.department.includes(value)){
-              return { ...curr, department: curr.department.filter(depName => depName !== value) };
+            const departments = new Set(curr.department)
+            const depArr = [...departments]
+            if (depArr.includes(value)){
+              return { ...curr, department: depArr };
             }else{
               return { ...curr, department: [...curr.department, value] };
-            }
-          });
+          }})
           break;
         case "priority":
           setAllFilters((curr) => {
-            if (curr.department.includes(value)){
-              return { ...curr, priority: curr.priority.filter(depName => depName !== value) };
+            const priority = new Set(curr.priority)
+            const priorArr = [...priority]
+            if (priorArr.includes(value)){
+              return { ...curr, priority: priorArr };
             }else{
               return { ...curr, priority: [...curr.priority, value] };
             }
@@ -44,45 +54,30 @@ function ListItem({
           default:
               break;
       }
+    }    
+    const employeeCheck = (empName: string) => {
+      setSelectedEmployee(empName); 
     };
 
-    const checkedCheck = (key:string, value:string) => {
-      switch (key){
-        case "employee":
-          if(local?.employee === value){
-            setChecked(true)
-          }else{
-            setChecked(false);
-          }
-            break;
-        case "department":
-          if(local?.department.includes(value)){
-            setChecked(true)
-          }else{
-            setChecked(false);
-          }
-          break;
-        case "employee":
-          if(local?.priotity.includes(value)){
-            setChecked(true)
-          }else{
-            setChecked(false)
-          };
-            break;
-        }
-    }
-    
+
     if ("surname" in item) {
-      checkedCheck("employee", `${item.name} ${item.surname}`)
+
       return (
+
         <LiOptions key={item.id} color="var(--text-color2)" check={checked}>
           <input
             type="checkbox"
-            value={item.name + " " + item.surname}
+            className="employee-name"
+            value={`${item.name} ${item.surname}`}
             name="employee"
+            checked={selectedEmployee === `${item.name} ${item.surname}`}
+            onChange={() => employeeCheck(`${item.name} ${item.surname}`)}
           />
-            <label htmlFor="employee" 
-            onClick={() => handleClick("employee", `${item.name} ${item.surname}`)}
+          <label htmlFor="employee" 
+            onClick={() => {
+             setChecked(curr => !curr)
+            }
+            }
             >{item.name + " " + item.surname}</label>
           <svg
             width="14"
@@ -101,15 +96,13 @@ function ListItem({
         </LiOptions>
       );
     } else if("icon" in item){
-      checkedCheck("priority", `${item.name}`)
-
       return (
         <LiOptions key={item.id} color={bgcolor(item.id)} check={ checked }>
           <input
             type="checkbox"
             value={item.name}
             name="priorities"
-            checked={checked}
+            defaultChecked={checked}
           />
           <label
             htmlFor="priorities"
@@ -134,8 +127,6 @@ function ListItem({
         </LiOptions>
       );
     }else{
-      checkedCheck("department", `${item.name}`)
-
       return (
         <LiOptions key={item.id} color={bgcolor(item.id)} check={ checked }>
           <input
@@ -171,3 +162,6 @@ function ListItem({
   
 
   export default ListItem;
+
+
+

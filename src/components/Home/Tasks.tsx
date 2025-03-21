@@ -24,7 +24,7 @@ function Tasks({status, filters}:{status: {id: number, name:string}, filters: Fi
         }catch (error) {
             console.log(error)
         }
-    }, [])
+    }, [filters])
 
   
     return (
